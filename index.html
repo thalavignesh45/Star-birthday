@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star of the Sea</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       height: 100vh;
@@ -73,4 +77,20 @@
 
   <!-- Falling Stars Generator -->
   <script>
-    for(let i =
+    for(let i = 0; i < 30; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (1 + Math.random() * 2) + 's';
+      star.style.opacity = Math.random();
+      document.body.appendChild(star);
+    }
+  </script>
+
+  <!-- ✅ WORKING Ocean Wave Sound -->
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+</html>
