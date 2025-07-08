@@ -3,110 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaal Nachathiram with Moon</title>
+  <title>Vaal Nachathira Night</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       height: 100vh;
-      background: url('https://images.pexels.com/photos/25606279/pexels-photo-25606279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center fixed;
+      background: url('/mnt/data/A_digital_illustration_depicts_a_serene_night_scen.png') no-repeat center center;
       background-size: cover;
-      font-family: 'Segoe UI', sans-serif;
+      background-attachment: scroll; /* ✅ FIXED: No zooming */
       overflow: hidden;
       position: relative;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
     }
 
-    .message {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      font-size: 2em;
-      font-weight: bold;
-      background: linear-gradient(90deg, #fefcea, #f1da36);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
-
-    /* Moon */
+    /* 🌕 Moon */
     .moon {
       position: absolute;
       top: 30px;
       left: 30px;
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle at center, #fff, #ddd);
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle at center, #fff, #ccc);
       border-radius: 50%;
       box-shadow: 0 0 30px 10px #ffffffaa;
       z-index: 10;
     }
 
-    /* Vaal Nachathiram */
+    /* ✨ Message */
+    .message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #fefcea, #f1da36);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 5px rgba(255,255,255,0.3);
+      z-index: 10;
+      text-align: center;
+    }
+
+    /* 🌠 Vaal Nachathiram */
     .vaal-star {
       position: absolute;
-      width: 150px;
-      height: 2px;
-      background: linear-gradient(to right, #fff, transparent);
-      transform: rotate(45deg);
+      top: 60px;
+      right: -200px;
+      width: 180px;
+      height: 20px;
+      background: radial-gradient(circle at right, #00ffe6 10%, transparent 70%);
+      filter: blur(1px);
       opacity: 0;
+      animation: shoot-star 5s ease-in-out forwards;
       z-index: 5;
     }
 
-    @keyframes shoot {
+    @keyframes shoot-star {
       0% {
-        top: 50px;
-        left: 50px;
+        right: -200px;
         opacity: 0;
       }
       10% {
         opacity: 1;
       }
+      90% {
+        opacity: 1;
+      }
       100% {
-        top: 100vh;
-        left: 120vw;
+        right: 120vw;
         opacity: 0;
       }
     }
 
-    /* Prevent animation flickering */
-    .no-shake {
-      transform: translateZ(0);
+    /* ✨ Star Rain */
+    .star {
+      position: absolute;
+      font-size: 10px;
+      color: #ffffffaa;
+      animation: fall-star linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes fall-star {
+      0% { top: -20px; opacity: 0.8; }
+      100% { top: 110vh; opacity: 0; }
     }
   </style>
 </head>
-<body class="no-shake">
+<body>
   <div class="moon"></div>
+
   <div class="message">
-    🌌 வால்நட்சத்திரம் வானத்தில் ஒளிரட்டும்... உன் ஆசைகள் எல்லாம் நனவாகட்டும் 🌠
+    🌠 வால்நட்சத்திரம் மெதுவாக வானில் பயணிக்கட்டும்... <br/>உன் கனவுகள் நனவாகட்டும் 🌌
   </div>
 
-  <!-- JS: Repeat vaal nachathiram every 2 seconds -->
-  <script>
-    function createShootingStar() {
-      const star = document.createElement('div');
-      star.className = 'vaal-star';
-      document.body.appendChild(star);
-
-      // Trigger animation
-      star.style.animation = 'shoot 2s linear';
-
-      // Remove after animation
-      setTimeout(() => {
-        document.body.removeChild(star);
-      }, 2000);
-    }
-
-    // Create a shooting star every 2 seconds
-    setInterval(createShootingStar, 2000);
-  </script>
-
-  <!-- Ocean Wave Sound -->
-  <audio autoplay loop>
-    <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-</body>
-</html>
+  <!-- 🌠
