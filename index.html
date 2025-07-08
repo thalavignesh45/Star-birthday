@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vaal Nachathira Mazhai</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaal Nachathiram with Moon</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,73 +11,57 @@
       height: 100vh;
       background: url('https://images.pexels.com/photos/25606279/pexels-photo-25606279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Noto Sans Tamil', 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+      position: relative;
       color: white;
     }
 
     .message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
       font-size: 2em;
+      font-weight: bold;
       background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow 2s ease-in-out infinite alternate;
-      max-width: 900px;
-      line-height: 1.6;
-      font-weight: bold;
-      z-index: 10;
-      position: relative;
-      text-shadow: 0 0 5px rgba(255,255,255,0.3);
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #f1da36; }
-      to   { text-shadow: 0 0 20px #fff176, 0 0 30px #fff; }
-    }
-
-    .star {
+    /* Moon */
+    .moon {
       position: absolute;
-      color: #fffacd;
-      font-size: 16px;
-      opacity: 0.8;
-      animation: fall linear infinite;
-      z-index: 1;
+      top: 30px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at center, #fff, #ddd);
+      border-radius: 50%;
+      box-shadow: 0 0 30px 10px #ffffffaa;
+      z-index: 10;
     }
 
+    /* Vaal Nachathiram */
     .vaal-star {
       position: absolute;
-      width: 120px;
+      width: 150px;
       height: 2px;
       background: linear-gradient(to right, #fff, transparent);
-      opacity: 0.8;
-      transform: rotate(-45deg);
-      animation: shoot 3s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes fall {
-      0% {
-        top: -10px;
-        opacity: 1;
-      }
-      100% {
-        top: 110vh;
-        opacity: 0;
-      }
+      transform: rotate(45deg);
+      opacity: 0;
+      z-index: 5;
     }
 
     @keyframes shoot {
       0% {
-        top: -50px;
-        left: -200px;
+        top: 50px;
+        left: 50px;
         opacity: 0;
       }
-      20% {
+      10% {
         opacity: 1;
       }
       100% {
@@ -87,48 +71,5 @@
       }
     }
 
-    @media (max-width: 600px) {
-      .message {
-        font-size: 1.3em;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="message">
-    🌌✨ விண்வெளியில் நட்சத்திர மழை, வால்நட்சத்திர ஒளியோடு<br />
-    உன் <strong>நட்சத்திர விதி</strong> இன்று பிரகாசிக்கட்டும் 🌠
-  </div>
-
-  <!-- Star rain (✨ emojis) -->
-  <script>
-    for(let i = 0; i < 40; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.innerText = '✨';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (3 + Math.random() * 4) + 's';
-      star.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(star);
-    }
-
-    // Vaal Nachathiram (shooting stars)
-    for(let i = 0; i < 5; i++) {
-      const vaal = document.createElement('div');
-      vaal.className = 'vaal-star';
-      vaal.style.top = Math.random() * -100 + 'px';
-      vaal.style.left = Math.random() * -300 + 'px';
-      vaal.style.animationDelay = Math.random() * 10 + 's';
-      document.body.appendChild(vaal);
-    }
-  </script>
-
-  <!-- Ocean Sound -->
-  <audio autoplay loop>
-    <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
-</body>
-</html>
+    /* Prevent animation flickering */
+    .no-shake {
