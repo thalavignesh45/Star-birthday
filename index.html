@@ -73,3 +73,40 @@
 
     /* Prevent animation flickering */
     .no-shake {
+      transform: translateZ(0);
+    }
+  </style>
+</head>
+<body class="no-shake">
+  <div class="moon"></div>
+  <div class="message">
+    🌌 வால்நட்சத்திரம் வானத்தில் ஒளிரட்டும்... உன் ஆசைகள் எல்லாம் நனவாகட்டும் 🌠
+  </div>
+
+  <!-- JS: Repeat vaal nachathiram every 2 seconds -->
+  <script>
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.className = 'vaal-star';
+      document.body.appendChild(star);
+
+      // Trigger animation
+      star.style.animation = 'shoot 2s linear';
+
+      // Remove after animation
+      setTimeout(() => {
+        document.body.removeChild(star);
+      }, 2000);
+    }
+
+    // Create a shooting star every 2 seconds
+    setInterval(createShootingStar, 2000);
+  </script>
+
+  <!-- Ocean Wave Sound -->
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+</html>
