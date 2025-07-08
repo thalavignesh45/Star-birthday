@@ -12,37 +12,36 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: url('https://cdn.pixabay.com/photo/2017/09/30/18/41/beach-2804733_1280.jpg') no-repeat center center fixed;
+      background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1280&q=80') no-repeat center center fixed;
       background-size: cover;
       color: white;
-      overflow: hidden;
       padding: 20px;
     }
 
     .message {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      font-size: 2em;
+      background: linear-gradient(90deg, #b2fefa, #0ed2f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 2em;
       animation: glow 2s ease-in-out infinite alternate;
       max-width: 800px;
       line-height: 1.5em;
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 10px #00c6ff; }
-      to { text-shadow: 0 0 20px #0072ff, 0 0 30px #00c6ff; }
+      from { text-shadow: 0 0 10px #b2fefa; }
+      to   { text-shadow: 0 0 20px #0ed2f7, 0 0 30px #ffffff; }
     }
 
     @media (max-width: 600px) {
       .message {
-        font-size: 1.2em;
+        font-size: 1.3em;
         padding: 10px;
       }
     }
@@ -50,7 +49,8 @@
 </head>
 <body>
   <div class="message">
-    ✨ Under the silent sky and above the sleeping sea, shines the Star of the Sea... guiding souls with light and grace. 🌊✨
+    ✨ Under the silent sky and above the sleeping sea,<br>
+    shines the <strong>Star of the Sea</strong>... guiding hearts with light and peace. 🌊✨
   </div>
 </body>
 </html>
