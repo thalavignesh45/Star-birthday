@@ -8,31 +8,62 @@
   <style>
     body {
       margin: 0;
-      background: linear-gradient(to right top, #ffd6e0, #ffe9c7);
       font-family: 'Open Sans', sans-serif;
-      color: #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff;
+      background: #0d1b2a;
+      overflow: hidden;
       min-height: 100vh;
-      text-align: center;
-      padding: 20px;
+    }
+
+    .stars-bg {
+      background: linear-gradient(to bottom, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .stars-bg::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/kangax/fake-dom/master/examples/stars.png') repeat;
+      animation: twinkle 4s ease-in-out infinite alternate;
+      opacity: 0.4;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      100% { opacity: 0.6; }
+    }
+
+    .sea {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(to top, #27496d, #1b2f45);
+      z-index: -1;
     }
 
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
       padding: 2rem;
       border-radius: 25px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
       max-width: 420px;
-      width: 100%;
-      position: relative;
+      width: 90%;
+      margin: 60px auto;
+      text-align: center;
     }
 
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 2.5rem;
-      color: #ff4081;
+      font-size: 2.6rem;
+      color: #e91e63;
     }
 
     p {
@@ -42,29 +73,46 @@
     }
 
     .cake {
-      width: 160px;
+      width: 100%;
+      max-width: 200px;
       margin: 1.5rem auto;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .starfish {
       width: 60px;
       margin-top: 1.2rem;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .footer {
       margin-top: 1.5rem;
       font-size: 0.9rem;
-      color: #777;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
+  <div class="stars-bg"></div>
+  <div class="sea"></div>
+
   <div class="card">
     <h1>Happy Birthday, Star! 🌟</h1>
     <img src="https://cdn.pixabay.com/photo/2021/07/15/19/06/birthday-cake-6469793_1280.jpg" alt="Birthday Cake" class="cake">
     <p>
-      On this special day, may your heart be full
+      May your journey always be guided by light,<br>
+      your soul dance like the waves beneath the stars,<br>
+      and your smile shine bright like the <strong>Star of the Sea</strong>. ✨
+    </p>
+    <img src="https://cdn.pixabay.com/photo/2013/07/12/18/39/starfish-153325_960_720.png" alt="Star of the Sea" class="starfish">
+    <div class="footer">
+      With love & light 🎈<br>
+      — Thala 💖
+    </div>
+  </div>
+
+</body>
+</html>
