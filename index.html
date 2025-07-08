@@ -13,58 +13,51 @@
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .stars, .stars2, .stars3 {
+    .stars, .stars2 {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: transparent;
       z-index: 0;
+      background-repeat: repeat;
     }
 
     .stars {
-      background: url('https://i.ibb.co/0j1XP9p/stars.png') repeat;
-      animation: moveStars 150s linear infinite;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 200s linear infinite;
     }
 
     .stars2 {
-      background: url('https://i.ibb.co/YZ2Zwgp/twinkling.png') repeat;
-      animation: moveStars 300s linear infinite;
-    }
-
-    .stars3 {
-      background: url('https://i.ibb.co/Bt3j6SB/stars3.png') repeat;
-      animation: moveStars 450s linear infinite;
+      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      animation: moveStars 400s linear infinite;
+      opacity: 0.4;
     }
 
     @keyframes moveStars {
-      from {background-position: 0 0;}
-      to {background-position: -10000px 5000px;}
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
     }
 
     .content {
       position: relative;
       z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       text-align: center;
       padding: 20px;
-      backdrop-filter: none;
+      max-width: 95%;
     }
 
     .wish {
-      font-size: 2.2em;
+      font-size: 1.8em;
       background: linear-gradient(90deg, #ffd65c, #ff6ec4, #9b5de5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: glow 2s ease-in-out infinite alternate;
-      margin-top: 20px;
-      max-width: 90%;
-      background-color: transparent;
+      margin-top: 30px;
+      line-height: 1.6em;
     }
 
     @keyframes glow {
@@ -73,8 +66,8 @@
     }
 
     .photo {
-      width: 250px;
-      height: 250px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
       border: 5px solid rgba(255, 255, 255, 0.5);
       object-fit: cover;
@@ -84,12 +77,13 @@
 
     @media (max-width: 600px) {
       .photo {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
       }
 
       .wish {
-        font-size: 1.6em;
+        font-size: 1.2em;
+        padding: 0 10px;
       }
     }
 
@@ -101,13 +95,14 @@
 <body>
   <div class="stars"></div>
   <div class="stars2"></div>
-  <div class="stars3"></div>
 
   <div class="content">
-    <!-- 🎂 Embedded Base64 image: cartoon cake -->
     <img class="photo" alt="Birthday Cake" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAARVBMVEX///8AAAB2dnYcHBz5+fn09PTu7u6qqqrBwcFsLCzV1dXW1tZ+fn6ampqpqamcnJyYmJiOjo6Xl5dBQUE7Ozs+Pj4FBQULNTY3AAABOklEQVR4nO3bQU7DMAwEwfb///z6V1ewVU1oSOuNsD6t4BnaGmMyJEmSJEmSJEmSJEmSJEmSpIv8zOba3aDWg7H63TYv5yY2Otg3A+FQ4GZ6/Y8BdrZnTucImr2BbtT46GZ6wzB4yO9gf8t4+L9Uu4eM4gBbWyvGAB3MBtz0n0Fn0q4lgJ9aO1Z/kLuwB0AB0Ax0A50Az0A50A50A30E50A70F+0K/Afe+xvhtGeXxFbZjeK8LPgTehbwDehbwHehbwFehbwHfpbwFeBfzfyiP9zfRI0qRJkqRJkqRJkqRJkqRJ0jfgL+RUjqzqazALAAAAAElFTkSuQmCC" />
 
-    <div class="wish">✨ Happy Birthday to the Brightest Star in My Sky! ✨</div>
+    <div class="wish">
+      ✨ On this special day, I wish you joy that never ends,<br>
+      smiles that never fade, and a life full of magic like the stars that shine above... ✨
+    </div>
   </div>
 
   <audio autoplay loop>
