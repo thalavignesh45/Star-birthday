@@ -70,126 +70,81 @@
       user-select: none;
     }
 
-    /* Stars */
     .star {
       font-size: 6px;
       color: white;
-      animation-name: fall-star, glitter;
-      animation-duration: linear, 1.5s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 5s linear forwards, glitter 1.5s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 3px white);
-      animation-timing-function: linear, ease-in-out;
     }
 
-    @keyframes fall-star {
-      0% { top: -5vh; opacity: 0.9; }
-      100% { top: 110vh; opacity: 0; }
-    }
-    @keyframes glitter {
-      0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 2px white); }
-      50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 4px white); }
-      100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
-    }
-
-    /* Gift Boxes */
     .gift {
       font-size: 12px;
       color: #ff4444;
-      animation-name: fall-gift, twinkle;
-      animation-duration: linear, 1.8s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 6s linear forwards, twinkle 2s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 5px #ff0000);
     }
-    @keyframes fall-gift {
-      0% { top: -5vh; opacity: 1; }
-      100% { top: 110vh; opacity: 0; }
-    }
-    @keyframes twinkle {
-      0% { transform: scale(1); filter: drop-shadow(0 0 3px #ff4444); }
-      50% { transform: scale(1.2); filter: drop-shadow(0 0 10px #ff0000); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 3px #ff4444); }
-    }
 
-    /* Cakes */
     .cake {
       font-size: 10px;
       color: #ffc0cb;
-      animation-name: fall-cake, pulse;
-      animation-duration: linear, 2s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 6s linear forwards, pulse 2s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 4px #ffb6c1);
     }
-    @keyframes fall-cake {
-      0% { top: -5vh; opacity: 1; }
-      100% { top: 110vh; opacity: 0; }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 2px #ffaec9); }
-      50% { transform: scale(1.2); filter: drop-shadow(0 0 8px #ff69b4); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 4px #ffaec9); }
-    }
 
-    /* Caps */
     .cap {
       font-size: 10px;
       color: #00ffff;
-      animation-name: fall-cap, wiggle;
-      animation-duration: linear, 2s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 6s linear forwards, wiggle 1.8s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 4px #00ffff);
     }
-    @keyframes fall-cap {
-      0% { top: -5vh; opacity: 1; }
-      100% { top: 110vh; opacity: 0; }
-    }
-    @keyframes wiggle {
-      0% { transform: rotate(-10deg) scale(1); }
-      50% { transform: rotate(10deg) scale(1.2); }
-      100% { transform: rotate(-10deg) scale(1); }
-    }
 
-    /* Balloons */
     .balloon {
       font-size: 14px;
       color: #ff69b4;
-      animation-name: fall-balloon, floaty;
-      animation-duration: linear, 3s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 7s linear forwards, floaty 2.5s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 6px #ff69b4);
     }
-    @keyframes fall-balloon {
-      0% { top: -5vh; opacity: 1; }
-      100% { top: 110vh; opacity: 0; }
-    }
-    @keyframes floaty {
-      0% { transform: translateX(0) scale(1); }
-      50% { transform: translateX(10px) scale(1.1); }
-      100% { transform: translateX(0) scale(1); }
-    }
 
-    /* Candies */
     .candy {
       font-size: 14px;
       color: #ffa500;
-      animation-name: fall-candy, twinkle-candy;
-      animation-duration: linear, 2.5s;
-      animation-iteration-count: 1, infinite;
-      animation-direction: normal, alternate;
+      animation: fall 6s linear forwards, twinkle 2s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 6px #ffa500);
     }
-    @keyframes fall-candy {
+
+    @keyframes fall {
       0% { top: -5vh; opacity: 1; }
       100% { top: 110vh; opacity: 0; }
     }
-    @keyframes twinkle-candy {
-      0% { transform: scale(1); filter: drop-shadow(0 0 3px #ffa500); }
-      50% { transform: scale(1.3); filter: drop-shadow(0 0 12px #ff8c00); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 3px #ffa500); }
+
+    @keyframes glitter {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    @keyframes twinkle {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(-10deg); }
+      50% { transform: rotate(10deg); }
+      100% { transform: rotate(-10deg); }
+    }
+
+    @keyframes floaty {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
     }
 
     @media (max-width: 480px) {
@@ -200,20 +155,21 @@
 </head>
 <body>
 
-  <!-- Audio with muted initially for mobile autoplay -->
+  <!-- 🔊 Audio -->
   <audio id="bg-music" autoplay loop muted playsinline>
     <source src="hb.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    // Try unmuting & playing on load (desktop)
+    const audio = document.getElementById('bg-music');
+
+    // Try autoplay unmute on load
     window.addEventListener('load', () => {
-      const audio = document.getElementById('bg-music');
       if (audio) {
         audio.muted = false;
         audio.play().catch(() => {
-          // On mobile, fallback to user tap unmute
+          // On mobile: wait for user tap
           window.addEventListener('click', () => {
             audio.muted = false;
             audio.play();
@@ -222,8 +178,11 @@
       }
     });
 
-    // Random rain emoji types with their classes
+    // 🎉 Rain Items — Weighted: more stars
     const rainItems = [
+      { emoji: '✦', className: 'star' },
+      { emoji: '✦', className: 'star' },
+      { emoji: '✦', className: 'star' },
       { emoji: '✦', className: 'star' },
       { emoji: '🎁', className: 'gift' },
       { emoji: '🎂', className: 'cake' },
@@ -238,14 +197,11 @@
       el.className = item.className;
       el.textContent = item.emoji;
       el.style.left = Math.random() * 100 + 'vw';
-      el.style.animationDuration = (5 + Math.random() * 5) + 's, ' + (1 + Math.random() * 2) + 's';
       document.body.appendChild(el);
-
-      // Remove after animation duration (fall + twinkle/float)
-      setTimeout(() => el.remove(), 7000 + Math.random() * 3000);
+      setTimeout(() => el.remove(), 8000);
     }
 
-    setInterval(createRainItem, 200);
+    setInterval(createRainItem, 120);
   </script>
 
   <div class="moon"></div>
