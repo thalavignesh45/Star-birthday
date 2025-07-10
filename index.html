@@ -9,25 +9,12 @@
 
     body {
       height: 100vh;
-      background: url('ocean-3.jpg') no-repeat center center;
+      background: url('https://i.imgur.com/3kZNdU1.jpg') no-repeat center center;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      position: relative;
       color: white;
-    }
-
-    .moon {
-      position: absolute;
-      top: 5vh;
-      left: 5vw;
-      width: 8vw;
-      height: 8vw;
-      background: radial-gradient(circle at center, #fff, #ccc);
-      border-radius: 50%;
-      box-shadow: 0 0 20px 6px #ffffffaa;
-      z-index: 8;
-      opacity: 0.9;
+      position: relative;
     }
 
     .message {
@@ -63,9 +50,9 @@
 
     .comet {
       position: absolute;
-      top: 76vh;
+      top: 85vh;
       left: -100px;
-      width: 28px;
+      width: 30px;
       height: 6px;
       background: linear-gradient(to right,
         white,
@@ -76,7 +63,8 @@
       box-shadow:
         0 0 8px 3px rgba(255, 255, 255, 0.8),
         0 0 16px 6px rgba(255, 120, 0, 0.6);
-      animation: flyComet 20s linear forwards;
+      transform: rotate(-20deg);
+      animation: flyComet 18s linear forwards;
       z-index: 20;
       filter: brightness(1.2);
     }
@@ -102,11 +90,21 @@
     }
 
     @keyframes flyComet {
-      0% { left: -120px; top: 76vh; opacity: 0; }
+      0% {
+        top: 85vh;
+        left: -120px;
+        opacity: 0;
+      }
       5% { opacity: 1; }
-      50% { left: 50vw; top: 76vh; }
-      95% { opacity: 1; }
-      100% { left: 110vw; top: 76vh; opacity: 0; }
+      50% {
+        top: 50vh;
+        left: 50vw;
+      }
+      100% {
+        top: 30vh;
+        left: 110vw;
+        opacity: 0;
+      }
     }
 
     .star {
@@ -133,13 +131,10 @@
 
     @media (max-width: 480px) {
       .message { font-size: 0.9em; }
-      .moon { width: 12vw; height: 12vw; }
     }
   </style>
 </head>
 <body>
-  <div class="moon"></div>
-
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -156,9 +151,9 @@
       const comet = document.createElement('div');
       comet.className = 'comet';
       document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 20000);
+      setTimeout(() => comet.remove(), 18000);
     }
-    setInterval(createComet, 22000);
+    setInterval(createComet, 20000);
     createComet();
 
     function createStarRain() {
