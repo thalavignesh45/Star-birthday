@@ -19,29 +19,29 @@
 
     .moon {
       position: absolute;
-      top: 4vh;
-      left: 6vw;
+      top: 5vh;
+      left: 5vw;
       width: 8vw;
       height: 8vw;
       background: radial-gradient(circle at center, #fff, #ccc);
       border-radius: 50%;
-      box-shadow: 0 0 20px 6px #ffffff99;
+      box-shadow: 0 0 20px 6px #ffffffaa;
       z-index: 8;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .message {
       position: absolute;
-      top: 42%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1em;
-      font-weight: 500;
       text-align: center;
       z-index: 10;
       padding: 0 15px;
-      animation: fadein 2s ease-in;
+      animation: fadein 2s ease-in-out;
       line-height: 1.6;
+      font-size: 1em;
+      font-weight: 500;
     }
 
     .message .text {
@@ -57,8 +57,56 @@
     }
 
     @keyframes fadein {
-      0% { opacity: 0; transform: translate(-50%, -40%) }
-      100% { opacity: 1; transform: translate(-50%, -50%) }
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .comet {
+      position: absolute;
+      top: 76vh;
+      left: -100px;
+      width: 28px;
+      height: 6px;
+      background: linear-gradient(to right,
+        white,
+        orange,
+        red,
+        purple);
+      border-radius: 20% 80% 80% 20% / 50%;
+      box-shadow:
+        0 0 8px 3px rgba(255, 255, 255, 0.8),
+        0 0 16px 6px rgba(255, 120, 0, 0.6);
+      animation: flyComet 20s linear forwards;
+      z-index: 20;
+      filter: brightness(1.2);
+    }
+
+    .comet::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      transform: translateY(-50%);
+      width: 320px;
+      height: 8px;
+      background: linear-gradient(to left,
+        white,
+        rgba(255,165,0,0.8),
+        rgba(255,69,0,0.6),
+        rgba(142,45,226,0.4),
+        transparent
+      );
+      filter: blur(5px);
+      opacity: 0.9;
+      border-radius: 20px;
+    }
+
+    @keyframes flyComet {
+      0% { left: -120px; top: 76vh; opacity: 0; }
+      5% { opacity: 1; }
+      50% { left: 50vw; top: 76vh; }
+      95% { opacity: 1; }
+      100% { left: 110vw; top: 76vh; opacity: 0; }
     }
 
     .star {
@@ -73,18 +121,18 @@
     }
 
     @keyframes fall-star {
-      0% { top: -5vh; opacity: 0.9; }
-      100% { top: 110vh; opacity: 0; }
+      from { top: -5vh; opacity: 0.9; }
+      to { top: 110vh; opacity: 0; }
     }
 
     @keyframes glitter {
-      0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 2px white); }
-      50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 4px white); }
-      100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
+      from { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+      to { transform: scale(1); opacity: 0.7; }
     }
 
     @media (max-width: 480px) {
-      .message { font-size: 1em; }
+      .message { font-size: 0.9em; }
       .moon { width: 12vw; height: 12vw; }
     }
   </style>
@@ -104,6 +152,15 @@
   </div>
 
   <script>
+    function createComet() {
+      const comet = document.createElement('div');
+      comet.className = 'comet';
+      document.body.appendChild(comet);
+      setTimeout(() => comet.remove(), 20000);
+    }
+    setInterval(createComet, 22000);
+    createComet();
+
     function createStarRain() {
       const star = document.createElement('div');
       star.className = 'star';
@@ -120,7 +177,6 @@
 
   <audio autoplay loop>
     <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
   </audio>
 </body>
 </html>
