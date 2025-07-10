@@ -9,7 +9,7 @@
 
     body {
       height: 100vh;
-      background: url('https://raw.githubusercontent.com/nesh45/assets/main/ocean-stars.jpg') no-repeat center center;
+      background: url('ocean-3.jpg') no-repeat center center;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
@@ -32,7 +32,7 @@
 
     .message {
       position: absolute;
-      top: 50%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1em;
@@ -59,51 +59,6 @@
     @keyframes fadein {
       0% { opacity: 0; transform: translate(-50%, -40%) }
       100% { opacity: 1; transform: translate(-50%, -50%) }
-    }
-
-    .comet {
-      position: absolute;
-      left: -120px;
-      top: 72vh;
-      width: 36px;
-      height: 18px;
-      background: radial-gradient(ellipse at left, white, orange, red, transparent);
-      border-radius: 50% 60% 60% 50% / 40% 40% 60% 60%;
-      transform: rotate(-12deg);
-      box-shadow:
-        0 0 25px 12px rgba(255, 130, 10, 0.8),
-        0 0 40px 20px rgba(255, 100, 0, 0.5);
-      animation: flyComet 14s linear forwards;
-      z-index: 20;
-    }
-
-    .comet::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 100%;
-      transform: translateY(-50%);
-      width: 400px;
-      height: 10px;
-      background: linear-gradient(to left,
-        white,
-        rgba(255, 165, 0, 0.8),
-        rgba(255, 69, 0, 0.6),
-        rgba(142, 45, 226, 0.4),
-        rgba(30, 60, 114, 0.3),
-        transparent
-      );
-      filter: blur(6px);
-      opacity: 1;
-      border-radius: 20px;
-    }
-
-    @keyframes flyComet {
-      0% { left: -120px; top: 72vh; opacity: 0; }
-      5% { opacity: 1; }
-      50% { left: 45vw; top: 60vh; }
-      75% { left: 80vw; top: 40vh; }
-      100% { left: 110vw; top: 30vh; opacity: 0; }
     }
 
     .star {
@@ -147,17 +102,6 @@
     </div>
     <div class="emoji">🌟🌊</div>
   </div>
-
-  <script>
-    function createComet() {
-      const comet = document.createElement('div');
-      comet.className = 'comet';
-      document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 14000);
-    }
-    setInterval(createComet, 16000);
-    createComet(); // first one on load
-  </script>
 
   <script>
     function createStarRain() {
