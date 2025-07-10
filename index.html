@@ -83,6 +83,28 @@
       100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
     }
 
+    .gift {
+      position: absolute;
+      font-size: 10px;
+      color: red;
+      opacity: 0.8;
+      z-index: 2;
+      animation: fall-gift linear forwards, sparkle 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 4px red);
+      pointer-events: none;
+    }
+
+    @keyframes fall-gift {
+      0% { top: -5vh; opacity: 1; }
+      100% { top: 110vh; opacity: 0; }
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1); filter: drop-shadow(0 0 3px red); }
+      50% { transform: scale(1.2); filter: drop-shadow(0 0 8px red); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 4px red); }
+    }
+
     .comet {
       position: absolute;
       top: 13vh;
@@ -141,14 +163,14 @@
 </head>
 <body>
 
-  <!-- 🎵 Autoplay audio moved to top for reliability -->
-  <audio id="bg-music" autoplay loop muted playsinline>
+  <!-- 🔊 Background music -->
+  <audio id="bg-music" autoplay loop muted playsinline preload="auto">
     <source src="hb.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    // Unmute and start playing after first user tap (mobile fix)
+    // Unmute on first user tap (mobile)
     window.addEventListener('click', function () {
       const audio = document.getElementById('bg-music');
       if (audio) {
@@ -158,6 +180,7 @@
     }, { once: true });
   </script>
 
+  <!-- 🌕 Moon and Message -->
   <div class="moon"></div>
 
   <div class="message">
@@ -171,6 +194,7 @@
     <div class="emoji">🌟🌊</div>
   </div>
 
+  <!-- ✦ Star Rain -->
   <script>
     function createStarRain() {
       const star = document.createElement('div');
@@ -186,6 +210,23 @@
     setInterval(createStarRain, 150);
   </script>
 
+  <!-- 🎁 Gift Rain -->
+  <script>
+    function createGiftRain() {
+      const gift = document.createElement('div');
+      gift.className = 'gift';
+      gift.innerText = '🎁';
+      gift.style.left = Math.random() * 100 + 'vw';
+      gift.style.fontSize = (10 + Math.random() * 4) + 'px';
+      const duration = (3 + Math.random() * 3);
+      gift.style.animationDuration = `${duration}s, 2s`;
+      document.body.appendChild(gift);
+      setTimeout(() => gift.remove(), duration * 1000);
+    }
+    setInterval(createGiftRain, 1000);
+  </script>
+
+  <!-- ☄️ Comet -->
   <script>
     function createComet() {
       const comet = document.createElement('div');
