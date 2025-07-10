@@ -30,6 +30,34 @@
       opacity: 0.85;
     }
 
+    .flag {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 28px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 0.5px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+      backdrop-filter: blur(1px);
+    }
+
+    .flag span {
+      font-size: 3px;
+      color: #fff;
+      white-space: nowrap;
+      font-family: 'Segoe UI', sans-serif;
+      letter-spacing: 0.2px;
+      opacity: 0.7;
+      text-shadow: 0 0 1px #fff;
+    }
+
     .message {
       position: absolute;
       top: 42%;
@@ -148,7 +176,7 @@
   </audio>
 
   <script>
-    // 🎵 Unmute on first user interaction (for mobile)
+    // 🎵 Unmute on first user interaction (mobile)
     window.addEventListener('click', function () {
       const audio = document.getElementById('bg-music');
       if (audio) {
@@ -158,8 +186,14 @@
     }, { once: true });
   </script>
 
-  <div class="moon"></div>
+  <!-- 🌕 Moon with flag -->
+  <div class="moon" id="moon">
+    <div class="flag" id="flag">
+      <span>பூங்குயில் குரூப்ஸ்</span>
+    </div>
+  </div>
 
+  <!-- ✨ Message -->
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -171,17 +205,11 @@
     <div class="emoji">🌟🌊</div>
   </div>
 
+  <!-- ✦ Star Rain -->
   <script>
-    // ✦ More star rain, rare extras
     function createStarRain() {
       const item = document.createElement('div');
-
-      // ✦ Dominates; others are rare sparkle
-      const emojis = [
-        '✦','✦','✦','✦','✦','✦','✦',
-        '🎁','🎂','🎉','🎈','🍬'
-      ];
-
+      const emojis = ['✦','✦','✦','✦','✦','✦','✦','🎁','🎂','🎉','🎈','🍬'];
       const emoji = emojis[Math.floor(Math.random() * emojis.length)];
       item.className = 'star';
       item.innerText = emoji;
@@ -195,8 +223,8 @@
     setInterval(createStarRain, 100);
   </script>
 
+  <!-- ☄️ Comet -->
   <script>
-    // ☄️ Comet stays as is
     function createComet() {
       const comet = document.createElement('div');
       comet.className = 'comet';
@@ -205,6 +233,20 @@
     }
     setInterval(createComet, 16000);
     createComet();
+  </script>
+
+  <!-- 🌕 Moon toggle flag -->
+  <script>
+    const moon = document.getElementById('moon');
+    const flag = document.getElementById('flag');
+
+    moon.addEventListener('click', () => {
+      if (flag.style.opacity === '1') {
+        flag.style.opacity = '0';
+      } else {
+        flag.style.opacity = '1';
+      }
+    });
   </script>
 
 </body>
