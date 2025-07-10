@@ -86,38 +86,27 @@
     .comet {
       position: absolute;
       top: 13vh;
-      left: -200px;
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.8);
-      animation: flyComet 14s linear forwards;
-      z-index: 9;
-    }
-
-    .comet::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translateY(-50%);
-      width: 260px;
-      height: 4px;
+      left: -300px;
+      width: 240px;
+      height: 5px;
       background: linear-gradient(
         to right,
-        white,
-        orange,
-        deeppink,
+        rgba(255, 255, 255, 1),
+        rgba(255, 200, 0, 0.9),
+        rgba(255, 105, 180, 0.6),
+        rgba(255, 20, 147, 0.3),
         transparent
       );
+      filter: blur(3px);
       border-radius: 50%;
-      filter: blur(4px);
-      opacity: 0.9;
+      box-shadow: 0 0 12px 8px rgba(255, 160, 0, 0.5);
+      animation: flyComet 14s linear forwards;
+      z-index: 9;
+      opacity: 0.95;
     }
 
     @keyframes flyComet {
-      0% { left: -200px; opacity: 0; }
+      0% { left: -300px; opacity: 0; }
       10% { opacity: 1; }
       50% { left: 50vw; }
       100% { left: 110vw; opacity: 0; }
@@ -166,7 +155,7 @@
       setTimeout(() => comet.remove(), 14000);
     }
     setInterval(createComet, 16000);
-    createComet(); // first one
+    createComet(); // first comet on page load
   </script>
 
   <audio autoplay loop>
