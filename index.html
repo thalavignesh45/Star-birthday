@@ -65,12 +65,11 @@
       position: absolute;
       top: 6.5vh;
       left: -100px;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: radial-gradient(circle at center, white, orange, red);
-      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
-      box-shadow: 0 0 20px 6px rgba(255, 80, 0, 0.8);
-      transform: rotate(-15deg);
+      border-radius: 50%;
+      box-shadow: 0 0 20px 10px rgba(255, 100, 0, 0.9);
       animation: flyComet 14s linear forwards;
       z-index: 20;
     }
@@ -79,20 +78,20 @@
       content: '';
       position: absolute;
       top: 50%;
-      right: 100%;
+      left: 100%;
       transform: translateY(-50%);
-      width: 360px;
-      height: 12px;
-      background: linear-gradient(to left,
-        transparent,
-        rgba(142, 45, 226, 0.3),
-        rgba(30, 60, 114, 0.4),
-        rgba(255, 69, 0, 0.6),
+      width: 400px;
+      height: 10px;
+      background: linear-gradient(to right,
+        white,
         rgba(255, 165, 0, 0.8),
-        white
+        rgba(255, 69, 0, 0.6),
+        rgba(142, 45, 226, 0.4),
+        rgba(30, 60, 114, 0.3),
+        transparent
       );
-      filter: blur(5px);
-      opacity: 0.9;
+      filter: blur(6px);
+      opacity: 1;
       border-radius: 20px;
     }
 
@@ -100,7 +99,7 @@
       0% { left: -120px; opacity: 0; }
       5% { opacity: 1; }
       50% { left: 45vw; top: 6.5vh; }
-      75% { left: 80vw; top: 7vh; }
+      75% { left: 80vw; top: 6.5vh; }
       100% { left: 110vw; opacity: 0; }
     }
 
