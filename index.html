@@ -6,27 +6,31 @@
   <title>Star of the Sea</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       height: 100vh;
       background: url('ocean-3.jpg') no-repeat center center;
       background-size: cover;
       background-attachment: scroll;
       overflow: hidden;
-      position: relative;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+      position: relative;
     }
+
     .moon {
       position: absolute;
-      top: 5vw;
-      left: 5vw;
-      width: 15vw;
-      height: 15vw;
+      top: 4vh;
+      left: 6vw;
+      width: 8vw;
+      height: 8vw;
       background: radial-gradient(circle at center, #fff, #ccc);
       border-radius: 50%;
-      box-shadow: 0 0 30px 10px #ffffffaa;
-      z-index: 10;
+      box-shadow: 0 0 20px 6px #ffffff99;
+      z-index: 8;
+      opacity: 0.85;
     }
+
     .message {
       position: absolute;
       bottom: 5vh;
@@ -43,80 +47,137 @@
       padding: 0 10px;
       animation: fadein 2s ease-in;
     }
+
     @keyframes fadein {
       0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
       100% { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
+
     .vaal-star {
       position: absolute;
-      top: 10vh;
-      left: -100px;
-      width: 14px;
-      height: 14px;
-      background: #00ffe6;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 3px;
+      background: white;
       border-radius: 50%;
-      filter: drop-shadow(0 0 10px #00ffe6) blur(1px);
-      animation: shoot-star 6s linear forwards;
-      z-index: 5;
+      box-shadow: 0 0 10px #00ffe6, 0 0 20px #00ffe6;
+      transform: rotate(-45deg);
       opacity: 0;
+      animation: vaalMove 2s linear forwards;
+      z-index: 10;
     }
+
     .vaal-star::after {
       content: '';
       position: absolute;
-      right: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 180px;
+      top: 0;
+      left: -150px;
+      width: 150px;
       height: 2px;
       background: linear-gradient(to right, #00ffe6, transparent);
-      opacity: 0.6;
       filter: blur(2px);
     }
-    @keyframes shoot-star {
-      0% { left: -100px; top: 10vh; opacity: 0; }
-      10% { opacity: 1; }
-      100% { left: 110vw; top: 10vh; opacity: 0; }
+
+    @keyframes vaalMove {
+      0% {
+        transform: translate(-10vw, -10vh) rotate(-45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(120vw, 120vh) rotate(-45deg);
+        opacity: 0;
+      }
     }
+
     .star {
       position: absolute;
-      color: #ffffffaa;
-      animation: fall-star linear infinite;
-      z-index: 2;
       font-size: 6px;
+      color: white;
+      opacity: 0.7;
+      z-index: 2;
+      animation: 
+        fall-star linear forwards,
+        glitter 1.5s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 3px white);
+      pointer-events: none;
     }
+
     @keyframes fall-star {
-      0% { top: -10px; opacity: 0.9; }
-      100% { top: 110vh; opacity: 0; }
+      0% {
+        top: -5vh;
+        opacity: 0.9;
+      }
+      100% {
+        top: 110vh;
+        opacity: 0;
+      }
+    }
+
+    @keyframes glitter {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+        filter: drop-shadow(0 0 2px white);
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 1;
+        filter: drop-shadow(0 0 4px white);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+        filter: drop-shadow(0 0 2px white);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .message { font-size: 1em; }
+      .moon { width: 12vw; height: 12vw; }
     }
   </style>
 </head>
 <body>
   <div class="moon"></div>
+
   <div class="message">
     ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
     May your light guide the waves and shine forever in my sky. 🌌
   </div>
+
   <script>
     function createVaalStar() {
       const star = document.createElement('div');
       star.className = 'vaal-star';
+      const startX = Math.random() * 20 - 10; // -10vw to +10vw
+      const startY = Math.random() * 20 - 10;
+      star.style.left = `${startX}vw`;
+      star.style.top = `${startY}vh`;
       document.body.appendChild(star);
-      setTimeout(() => star.remove(), 6000);
+      setTimeout(() => star.remove(), 3000);
     }
-    setInterval(createVaalStar, 7000);
+    setInterval(createVaalStar, 6000);
   </script>
+
   <script>
     function createStarRain() {
       const star = document.createElement('div');
       star.className = 'star';
       star.innerText = '✦';
       star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (2 + Math.random() * 2) + 's';
+      star.style.fontSize = (4 + Math.random() * 4) + 'px';
+      const duration = (2 + Math.random() * 3);
+      star.style.animationDuration = `${duration}s, 1.5s`;
       document.body.appendChild(star);
-      setTimeout(() => star.remove(), 4000);
+      setTimeout(() => star.remove(), duration * 1000);
     }
-    setInterval(createStarRain, 200);
+    setInterval(createStarRain, 150);
   </script>
+
   <audio autoplay loop>
     <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
     Your browser does not support the audio element.
