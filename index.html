@@ -11,7 +11,6 @@
       height: 100vh;
       background: url('ocean-3.jpg') no-repeat center center;
       background-size: cover;
-      background-attachment: scroll;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -33,10 +32,10 @@
 
     .message {
       position: absolute;
-      bottom: 5vh;
+      top: 40%;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.9em;
+      transform: translate(-50%, -50%);
+      font-size: 0.95em;
       font-weight: 500;
       background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
@@ -44,13 +43,13 @@
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
       z-index: 10;
       text-align: center;
-      padding: 0 10px;
+      padding: 0 15px;
       animation: fadein 2s ease-in;
     }
 
     @keyframes fadein {
-      0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      0% { opacity: 0; transform: translate(-50%, -40%) }
+      100% { opacity: 1; transform: translate(-50%, -50%) }
     }
 
     .vaal-star {
@@ -59,12 +58,11 @@
       left: -100px;
       width: 6px;
       height: 6px;
-      background: white;
       border-radius: 50%;
-      box-shadow: 0 0 10px #00ffe6, 0 0 25px #00ffe6;
+      background: white;
       opacity: 0;
-      animation: shootRight 3s ease-out forwards;
-      z-index: 11;
+      animation: cometTrail 6s linear forwards;
+      z-index: 12;
     }
 
     .vaal-star::after {
@@ -73,24 +71,40 @@
       top: 50%;
       right: 100%;
       transform: translateY(-50%);
-      width: 180px;
+      width: 160px;
       height: 2px;
       background: linear-gradient(to right, #00ffe6, transparent);
-      opacity: 0.7;
+      opacity: 0.6;
       filter: blur(2px);
+      transition: all 0.3s ease-in-out;
     }
 
-    @keyframes shootRight {
+    @keyframes cometTrail {
       0% {
         left: -100px;
-        opacity: 0;
+        opacity: 0.2;
+        box-shadow: 0 0 6px #00ffe6;
       }
-      10% {
+      30% {
+        opacity: 0.6;
+        box-shadow: 0 0 10px #00ffe6;
+      }
+      45% {
         opacity: 1;
+        box-shadow: 0 0 25px #ffffff, 0 0 45px #00ffff;
+      }
+      60% {
+        opacity: 0.9;
+        box-shadow: 0 0 30px #66ccff, 0 0 60px #99ffff;
+      }
+      80% {
+        opacity: 0.4;
+        box-shadow: 0 0 10px #00eeee;
       }
       100% {
         left: 110vw;
         opacity: 0;
+        box-shadow: 0 0 5px #00ccff;
       }
     }
 
@@ -100,40 +114,20 @@
       color: white;
       opacity: 0.7;
       z-index: 2;
-      animation:
-        fall-star linear forwards,
-        glitter 1.5s ease-in-out infinite alternate;
+      animation: fall-star linear forwards, glitter 1.5s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 3px white);
       pointer-events: none;
     }
 
     @keyframes fall-star {
-      0% {
-        top: -5vh;
-        opacity: 0.9;
-      }
-      100% {
-        top: 110vh;
-        opacity: 0;
-      }
+      0% { top: -5vh; opacity: 0.9; }
+      100% { top: 110vh; opacity: 0; }
     }
 
     @keyframes glitter {
-      0% {
-        transform: scale(1);
-        opacity: 0.6;
-        filter: drop-shadow(0 0 2px white);
-      }
-      50% {
-        transform: scale(1.3);
-        opacity: 1;
-        filter: drop-shadow(0 0 4px white);
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0.7;
-        filter: drop-shadow(0 0 2px white);
-      }
+      0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 2px white); }
+      50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 4px white); }
+      100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
     }
 
     @media (max-width: 480px) {
@@ -157,12 +151,11 @@
     function createVaalStar() {
       const star = document.createElement('div');
       star.className = 'vaal-star';
-      star.style.top = '4vh'; // pass above moon
+      star.style.top = '4vh';
       document.body.appendChild(star);
-      setTimeout(() => star.remove(), 3000);
+      setTimeout(() => star.remove(), 6000);
     }
-
-    setInterval(createVaalStar, 5000);
+    setInterval(createVaalStar, 7000);
   </script>
 
   <script>
@@ -177,7 +170,6 @@
       document.body.appendChild(star);
       setTimeout(() => star.remove(), duration * 1000);
     }
-
     setInterval(createStarRain, 150);
   </script>
 
