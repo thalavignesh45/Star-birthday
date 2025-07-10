@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -30,32 +30,48 @@
       opacity: 0.85;
     }
 
-    .flag {
+    /* 🌕 Flag Setup */
+    .flag-container {
       position: absolute;
-      top: 2px;
-      right: 2px;
-      width: 28px;
-      height: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 0.5px solid rgba(255, 255, 255, 0.4);
-      border-radius: 1px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
       opacity: 0;
-      transition: opacity 0.8s ease;
+      z-index: 11;
+      transition: opacity 0.3s ease;
+      animation: none;
+    }
+
+    .flag-pole {
+      width: 1.2px;
+      height: 16px;
+      background: linear-gradient(#999, #ccc);
+      margin-right: 2px;
+    }
+
+    .flag {
+      width: 32px;
+      height: 12px;
+      background: #b51010; /* Rich red */
+      color: #ffef96;
+      font-size: 3px;
+      font-family: 'Segoe UI', sans-serif;
+      border-radius: 1px;
+      border: 0.5px solid rgba(255, 239, 150, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 11;
-      backdrop-filter: blur(1px);
+      text-shadow: 0 0 0.6px #000;
+      white-space: nowrap;
+      box-shadow: 0 0 1px rgba(255, 239, 150, 0.3);
     }
 
-    .flag span {
-      font-size: 3px;
-      color: #fff;
-      white-space: nowrap;
-      font-family: 'Segoe UI', sans-serif;
-      letter-spacing: 0.2px;
-      opacity: 0.7;
-      text-shadow: 0 0 1px #fff;
+    @keyframes raiseFlag {
+      0% { bottom: -10px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { bottom: 100%; opacity: 1; }
     }
 
     .message {
@@ -176,7 +192,7 @@
   </audio>
 
   <script>
-    // 🎵 Unmute on first user interaction (mobile)
+    // 🎵 Unmute on first user interaction (mobile safe)
     window.addEventListener('click', function () {
       const audio = document.getElementById('bg-music');
       if (audio) {
@@ -186,10 +202,11 @@
     }, { once: true });
   </script>
 
-  <!-- 🌕 Moon with flag -->
+  <!-- 🌕 Moon + Raising Flag -->
   <div class="moon" id="moon">
-    <div class="flag" id="flag">
-      <span>பூங்குயில் குரூப்ஸ்</span>
+    <div class="flag-container" id="flag">
+      <div class="flag-pole"></div>
+      <div class="flag">பூங்குயில் குரூப்ஸ்</div>
     </div>
   </div>
 
@@ -235,17 +252,22 @@
     createComet();
   </script>
 
-  <!-- 🌕 Moon toggle flag -->
+  <!-- 🚩 Flag Raise Toggle -->
   <script>
     const moon = document.getElementById('moon');
     const flag = document.getElementById('flag');
+    let isRaised = false;
 
     moon.addEventListener('click', () => {
-      if (flag.style.opacity === '1') {
-        flag.style.opacity = '0';
-      } else {
+      if (!isRaised) {
+        flag.style.animation = 'raiseFlag 1.2s forwards ease-out';
         flag.style.opacity = '1';
+      } else {
+        flag.style.animation = 'none';
+        flag.style.opacity = '0';
+        flag.style.bottom = '0';
       }
+      isRaised = !isRaised;
     });
   </script>
 
