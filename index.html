@@ -31,46 +31,59 @@
     }
 
     @keyframes moonShake {
-      0%   { transform: translate(0, 0); }
-      25%  { transform: translate(-3px, 1px); }
-      50%  { transform: translate(3px, -1px); }
-      75%  { transform: translate(-2px, 2px); }
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-2px, 1px); }
+      50% { transform: translate(2px, -1px); }
+      75% { transform: translate(-1px, 2px); }
       100% { transform: translate(0, 0); }
     }
 
     .crack {
       position: absolute;
-      top: -2px;
-      left: 10%;
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(to right, #aaa, #444, #aaa);
+      top: 49%;
+      left: 50%;
+      width: 2px;
+      height: 28px;
+      transform: translate(-50%, -50%) rotate(10deg);
+      z-index: 10;
       opacity: 0;
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.5s ease-out, opacity 0.5s ease;
-      z-index: 9;
+      transition: opacity 0.3s ease;
+    }
+
+    .crack::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        #888,
+        #888 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      filter: blur(0.3px);
     }
 
     .flag-container {
       position: absolute;
-      top: -2px;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, 20px);
+      transform: translate(-50%, 10px);
       display: flex;
       flex-direction: column;
       align-items: center;
       opacity: 0;
+      z-index: 11;
       pointer-events: none;
-      z-index: 10;
     }
 
     .flag {
-      width: 34px;
-      height: 10px;
-      background: linear-gradient(to right, #b51010, #a00000);
+      width: 20px;
+      height: 8px;
+      background: #b51010;
       color: #ffef96;
-      font-size: 2px;
+      font-size: 1.5px;
       font-family: 'Segoe UI', sans-serif;
       border-radius: 1px;
       border: 0.5px solid rgba(255, 239, 150, 0.4);
@@ -79,25 +92,24 @@
       justify-content: center;
       text-shadow: 0 0 0.6px #000;
       white-space: nowrap;
-      box-shadow: 0 0 3px #b51010cc;
+      box-shadow: 0 0 1px rgba(255, 239, 150, 0.3);
       margin-bottom: 1px;
     }
 
     .flag-pole {
-      width: 1.5px;
-      height: 24px;
+      width: 1px;
+      height: 20px;
       background: linear-gradient(#999, #ccc);
     }
 
     @keyframes raiseFlag {
-      0%   { transform: translate(-50%, 20px); opacity: 0; }
-      30%  { transform: translate(-50%, -5px); opacity: 1; }
-      100% { transform: translate(-50%, -48px); }
+      0%   { transform: translate(-50%, 10px); opacity: 0; }
+      100% { transform: translate(-50%, -38px); opacity: 1; }
     }
 
     @keyframes lowerFlag {
-      0%   { transform: translate(-50%, -48px); opacity: 1; }
-      100% { transform: translate(-50%, 20px); opacity: 0; }
+      0%   { transform: translate(-50%, -38px); opacity: 1; }
+      100% { transform: translate(-50%, 10px); opacity: 0; }
     }
 
     .message {
@@ -148,9 +160,9 @@
     }
 
     @keyframes glitter {
-      0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 2px white); }
-      50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 4px white); }
-      100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
     }
 
     .comet {
@@ -211,7 +223,6 @@
 </head>
 <body>
 
-  <!-- 🎵 Audio -->
   <audio id="bg-music" autoplay loop muted playsinline>
     <source src="hb.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
@@ -227,16 +238,14 @@
     }, { once: true });
   </script>
 
-  <!-- 🌕 Moon -->
   <div class="moon" id="moon">
     <div class="crack" id="crack"></div>
     <div class="flag-container" id="flag">
-      <div class="flag">பூங்குயில் குரூப்ஸ்</div>
+      <div class="flag">பூங்குயில்</div>
       <div class="flag-pole"></div>
     </div>
   </div>
 
-  <!-- ✨ Message -->
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -248,14 +257,12 @@
     <div class="emoji">🌟🌊</div>
   </div>
 
-  <!-- ✦ Star Rain -->
   <script>
     function createStarRain() {
       const item = document.createElement('div');
-      const emojis = ['✦','✦','✦','🎁','🎂','🎉','🎈','🍬'];
-      const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      const emojis = ['✦','🎁','🎂','🎉','🎈','🍬'];
       item.className = 'star';
-      item.innerText = emoji;
+      item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       item.style.left = Math.random() * 100 + 'vw';
       item.style.fontSize = (4 + Math.random() * 4) + 'px';
       const duration = (2 + Math.random() * 3);
@@ -266,12 +273,10 @@
     setInterval(createStarRain, 100);
   </script>
 
-  <!-- ☄️ Comet -->
   <script>
     function createComet() {
       const comet = document.createElement('div');
       comet.className = 'comet';
-      comet.style.top = (10 + Math.random() * 30) + 'vh';
       document.body.appendChild(comet);
       setTimeout(() => comet.remove(), 14000);
     }
@@ -279,7 +284,6 @@
     createComet();
   </script>
 
-  <!-- 🚩 Moon Interaction Logic -->
   <script>
     const moon = document.getElementById('moon');
     const flag = document.getElementById('flag');
@@ -293,11 +297,9 @@
         flag.style.animation = 'raiseFlag 1.5s ease-out forwards';
         flag.style.opacity = '1';
         crack.style.opacity = '1';
-        crack.style.transform = 'scaleX(1)';
       } else {
         flag.style.animation = 'lowerFlag 1.2s ease-in forwards';
         crack.style.opacity = '0';
-        crack.style.transform = 'scaleX(0)';
       }
 
       setTimeout(() => {
