@@ -6,6 +6,7 @@
   <title>Star of the Sea</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       height: 100vh;
       background: url('ocean-3.jpg') no-repeat center center;
@@ -15,6 +16,7 @@
       position: relative;
       color: white;
     }
+
     .moon {
       position: absolute;
       top: 4vh;
@@ -27,6 +29,7 @@
       z-index: 8;
       opacity: 0.85;
     }
+
     .message {
       position: absolute;
       top: 42%;
@@ -40,20 +43,24 @@
       animation: fadein 2s ease-in;
       line-height: 1.6;
     }
+
     .message .text {
       background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
     }
+
     .message .emoji {
       display: inline-block;
       margin-top: 10px;
     }
+
     @keyframes fadein {
       0% { opacity: 0; transform: translate(-50%, -40%) }
       100% { opacity: 1; transform: translate(-50%, -50%) }
     }
+
     .star {
       position: absolute;
       font-size: 6px;
@@ -64,15 +71,58 @@
       filter: drop-shadow(0 0 3px white);
       pointer-events: none;
     }
+
     @keyframes fall-star {
       0% { top: -5vh; opacity: 0.9; }
       100% { top: 110vh; opacity: 0; }
     }
+
     @keyframes glitter {
       0% { transform: scale(1); opacity: 0.6; filter: drop-shadow(0 0 2px white); }
       50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 4px white); }
       100% { transform: scale(1); opacity: 0.7; filter: drop-shadow(0 0 2px white); }
     }
+
+    .comet {
+      position: absolute;
+      top: 13vh;
+      left: -200px;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.8);
+      animation: flyComet 14s linear forwards;
+      z-index: 9;
+    }
+
+    .comet::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      width: 260px;
+      height: 4px;
+      background: linear-gradient(
+        to right,
+        white,
+        orange,
+        deeppink,
+        transparent
+      );
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: 0.9;
+    }
+
+    @keyframes flyComet {
+      0% { left: -200px; opacity: 0; }
+      10% { opacity: 1; }
+      50% { left: 50vw; }
+      100% { left: 110vw; opacity: 0; }
+    }
+
     @media (max-width: 480px) {
       .message { font-size: 1em; }
       .moon { width: 12vw; height: 12vw; }
@@ -81,6 +131,7 @@
 </head>
 <body>
   <div class="moon"></div>
+
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -91,6 +142,7 @@
     </div>
     <div class="emoji">🌟🌊</div>
   </div>
+
   <script>
     function createStarRain() {
       const star = document.createElement('div');
@@ -105,6 +157,18 @@
     }
     setInterval(createStarRain, 150);
   </script>
+
+  <script>
+    function createComet() {
+      const comet = document.createElement('div');
+      comet.className = 'comet';
+      document.body.appendChild(comet);
+      setTimeout(() => comet.remove(), 14000);
+    }
+    setInterval(createComet, 16000);
+    createComet(); // first one
+  </script>
+
   <audio autoplay loop>
     <source src="https://dl.sndup.net/z9x9/ocean-waves.mp3" type="audio/mp3">
     Your browser does not support the audio element.
