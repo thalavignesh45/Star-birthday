@@ -11,9 +11,9 @@
       height: 100vh;
       background: url('ocean-3.jpg') no-repeat center center;
       background-size: cover;
-      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+      overflow: hidden;
       position: relative;
     }
 
@@ -56,12 +56,12 @@
       position: absolute;
       top: 4vh;
       left: -100px;
-      width: 6px;
-      height: 6px;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, white, #00ffff);
       border-radius: 50%;
-      background: white;
       opacity: 0;
-      animation: cometTrail 6s linear forwards;
+      animation: flyComet 6s linear forwards;
       z-index: 12;
     }
 
@@ -70,41 +70,30 @@
       position: absolute;
       top: 50%;
       right: 100%;
-      transform: translateY(-50%);
-      width: 160px;
-      height: 2px;
-      background: linear-gradient(to right, #00ffe6, transparent);
+      transform: translateY(-50%) rotate(-5deg);
+      width: 320px;
+      height: 3px;
+      background: linear-gradient(to right, white, #00ffff, transparent);
       opacity: 0.6;
-      filter: blur(2px);
-      transition: all 0.3s ease-in-out;
+      filter: blur(4px);
     }
 
-    @keyframes cometTrail {
+    @keyframes flyComet {
       0% {
         left: -100px;
-        opacity: 0.2;
-        box-shadow: 0 0 6px #00ffe6;
+        opacity: 0;
+        filter: brightness(0.8);
       }
-      30% {
-        opacity: 0.6;
-        box-shadow: 0 0 10px #00ffe6;
-      }
-      45% {
+      10% {
         opacity: 1;
-        box-shadow: 0 0 25px #ffffff, 0 0 45px #00ffff;
       }
-      60% {
-        opacity: 0.9;
-        box-shadow: 0 0 30px #66ccff, 0 0 60px #99ffff;
-      }
-      80% {
-        opacity: 0.4;
-        box-shadow: 0 0 10px #00eeee;
+      50% {
+        filter: brightness(1.2);
       }
       100% {
         left: 110vw;
         opacity: 0;
-        box-shadow: 0 0 5px #00ccff;
+        filter: brightness(0.5);
       }
     }
 
@@ -155,7 +144,7 @@
       document.body.appendChild(star);
       setTimeout(() => star.remove(), 6000);
     }
-    setInterval(createVaalStar, 7000);
+    setInterval(createVaalStar, 8000);
   </script>
 
   <script>
