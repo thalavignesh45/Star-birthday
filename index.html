@@ -12,9 +12,9 @@
       background: url('ocean-3.jpg') no-repeat center center;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
-      color: white;
       overflow: hidden;
       position: relative;
+      color: white;
     }
 
     .moon {
@@ -32,10 +32,10 @@
 
     .message {
       position: absolute;
-      top: 40%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 0.95em;
+      font-size: 1em;
       font-weight: 500;
       background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
@@ -54,16 +54,15 @@
 
     .comet {
       position: absolute;
-      top: 7.5vh; /* aligned with moon center */
-      left: -120px;
-      width: 18px;
-      height: 18px;
-      background: radial-gradient(circle, white, orange, darkred);
+      top: 8vh;
+      left: -100px;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, white, orange, red);
       border-radius: 50%;
-      box-shadow: 0 0 25px 10px rgba(255, 140, 0, 0.6);
-      animation: flyComet 12s linear forwards, cometGlow 1.2s ease-in-out infinite;
+      box-shadow: 0 0 30px 10px rgba(255, 100, 0, 0.8);
+      animation: flyComet 14s linear forwards;
       z-index: 15;
-      transform: rotate(-15deg);
     }
 
     .comet::after {
@@ -71,25 +70,20 @@
       position: absolute;
       top: 50%;
       right: 100%;
-      transform: translateY(-50%) rotate(-10deg);
-      width: 320px;
+      transform: translateY(-50%);
+      width: 300px;
       height: 8px;
-      background: linear-gradient(to right, white, orange, blue, transparent);
+      background: linear-gradient(to left, transparent, #6dd5fa, #1e3c72, #8e2de2);
       filter: blur(6px);
-      opacity: 0.8;
-      border-radius: 5px;
+      opacity: 0.9;
+      border-radius: 4px;
     }
 
     @keyframes flyComet {
-      0%   { left: -120px; opacity: 0; }
-      10%  { opacity: 1; }
+      0% { left: -120px; opacity: 0; }
+      5% { opacity: 1; }
+      80% { left: 80vw; opacity: 1; }
       100% { left: 110vw; opacity: 0; }
-    }
-
-    @keyframes cometGlow {
-      0%   { box-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600; }
-      50%  { box-shadow: 0 0 35px #ffffff, 0 0 70px #ff6600; }
-      100% { box-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600; }
     }
 
     .star {
@@ -125,10 +119,10 @@
 
   <div class="message">
     ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
-    A soul as deep as the sea,<br>
-    a presence that lights the skies.<br>
-    May your path shine with grace,<br>
-    and your name echo where stars meet the sea. 🌌🌊
+    A soul as radiant as the cosmos,<br>
+    a spark that dances above the waves,<br>
+    lighting hearts like stars in the night sky.<br>
+    May your name echo where stars meet the sea. 🌟🌊
   </div>
 
   <script>
@@ -136,9 +130,9 @@
       const comet = document.createElement('div');
       comet.className = 'comet';
       document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 12000);
+      setTimeout(() => comet.remove(), 14000);
     }
-    setInterval(createComet, 14000); // 1 comet every 14 sec
+    setInterval(createComet, 16000); // One every 16s
   </script>
 
   <script>
