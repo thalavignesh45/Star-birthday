@@ -179,9 +179,20 @@
     createComet();
   </script>
 
-  <audio autoplay loop playsinline>
-  <source src="https://pixabay.com/get/your-track.mp3" type="audio/mpeg">
+  <audio id="bg-music" autoplay loop muted playsinline>
+  <source src="hb.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+
+<script>
+  // Unmute and start playing after first user tap (for mobile devices)
+  window.addEventListener('click', function () {
+    const audio = document.getElementById('bg-music');
+    if (audio) {
+      audio.muted = false;
+      audio.play().catch(err => console.warn("Playback blocked:", err));
+    }
+  }, { once: true });
+</script>
 </body>
 </html>
