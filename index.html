@@ -52,49 +52,44 @@
       100% { opacity: 1; transform: translate(-50%, -50%) }
     }
 
-    .vaal-star {
+    .comet {
       position: absolute;
-      top: 4vh;
-      left: -100px;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, white, #00ffff);
+      top: 7.5vh; /* aligned with moon center */
+      left: -120px;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, white, orange, darkred);
       border-radius: 50%;
-      opacity: 0;
-      animation: flyComet 6s linear forwards;
-      z-index: 12;
+      box-shadow: 0 0 25px 10px rgba(255, 140, 0, 0.6);
+      animation: flyComet 12s linear forwards, cometGlow 1.2s ease-in-out infinite;
+      z-index: 15;
+      transform: rotate(-15deg);
     }
 
-    .vaal-star::after {
+    .comet::after {
       content: '';
       position: absolute;
       top: 50%;
       right: 100%;
-      transform: translateY(-50%) rotate(-5deg);
+      transform: translateY(-50%) rotate(-10deg);
       width: 320px;
-      height: 3px;
-      background: linear-gradient(to right, white, #00ffff, transparent);
-      opacity: 0.6;
-      filter: blur(4px);
+      height: 8px;
+      background: linear-gradient(to right, white, orange, blue, transparent);
+      filter: blur(6px);
+      opacity: 0.8;
+      border-radius: 5px;
     }
 
     @keyframes flyComet {
-      0% {
-        left: -100px;
-        opacity: 0;
-        filter: brightness(0.8);
-      }
-      10% {
-        opacity: 1;
-      }
-      50% {
-        filter: brightness(1.2);
-      }
-      100% {
-        left: 110vw;
-        opacity: 0;
-        filter: brightness(0.5);
-      }
+      0%   { left: -120px; opacity: 0; }
+      10%  { opacity: 1; }
+      100% { left: 110vw; opacity: 0; }
+    }
+
+    @keyframes cometGlow {
+      0%   { box-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600; }
+      50%  { box-shadow: 0 0 35px #ffffff, 0 0 70px #ff6600; }
+      100% { box-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600; }
     }
 
     .star {
@@ -137,14 +132,13 @@
   </div>
 
   <script>
-    function createVaalStar() {
-      const star = document.createElement('div');
-      star.className = 'vaal-star';
-      star.style.top = '4vh';
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 6000);
+    function createComet() {
+      const comet = document.createElement('div');
+      comet.className = 'comet';
+      document.body.appendChild(comet);
+      setTimeout(() => comet.remove(), 12000);
     }
-    setInterval(createVaalStar, 8000);
+    setInterval(createComet, 14000); // 1 comet every 14 sec
   </script>
 
   <script>
