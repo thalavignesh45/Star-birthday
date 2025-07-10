@@ -37,14 +37,23 @@
       transform: translate(-50%, -50%);
       font-size: 1em;
       font-weight: 500;
+      text-align: center;
+      z-index: 10;
+      padding: 0 15px;
+      animation: fadein 2s ease-in;
+      line-height: 1.6;
+    }
+
+    .message .text {
       background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-      z-index: 10;
-      text-align: center;
-      padding: 0 15px;
-      animation: fadein 2s ease-in;
+      display: inline-block;
+    }
+
+    .message .emoji {
+      display: inline-block;
+      margin-left: 4px;
     }
 
     @keyframes fadein {
@@ -61,8 +70,8 @@
       background: radial-gradient(circle, white, orange, red);
       border-radius: 50%;
       box-shadow: 0 0 30px 10px rgba(255, 100, 0, 0.8);
-      animation: flyComet 14s linear forwards;
-      z-index: 15;
+      animation: flyComet 12s linear forwards;
+      z-index: 20;
     }
 
     .comet::after {
@@ -82,7 +91,7 @@
     @keyframes flyComet {
       0% { left: -120px; opacity: 0; }
       5% { opacity: 1; }
-      80% { left: 80vw; opacity: 1; }
+      50% { left: 50vw; }
       100% { left: 110vw; opacity: 0; }
     }
 
@@ -118,11 +127,14 @@
   <div class="moon"></div>
 
   <div class="message">
-    ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
-    A soul as radiant as the cosmos,<br>
-    a spark that dances above the waves,<br>
-    lighting hearts like stars in the night sky.<br>
-    May your name echo where stars meet the sea. 🌟🌊
+    <div class="text">
+      ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
+      A soul as radiant as the cosmos,<br>
+      a spark that dances above the waves,<br>
+      lighting hearts like stars in the night sky.<br>
+      May your name echo where stars meet the sea.
+    </div>
+    <span class="emoji">🌟🌊</span>
   </div>
 
   <script>
@@ -130,9 +142,10 @@
       const comet = document.createElement('div');
       comet.className = 'comet';
       document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 14000);
+      setTimeout(() => comet.remove(), 12000);
     }
-    setInterval(createComet, 16000); // One every 16s
+    setInterval(createComet, 14000); // smoother timing
+    createComet(); // show immediately
   </script>
 
   <script>
