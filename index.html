@@ -3,322 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Star of the Sea</title>
+  <title>பூங்குயில் குரூப்ஸ்</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      height: 100vh;
-      background: url('ocean-3.jpg') no-repeat center center;
+      background: url('https://i.imgur.com/H9PBKyA.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
       overflow: hidden;
       position: relative;
-      color: white;
+      font-family: 'Arial', sans-serif;
     }
 
     .moon {
-      position: absolute;
-      top: 4vh;
-      left: 6vw;
-      width: 8vw;
-      height: 8vw;
-      background: radial-gradient(circle at center, #fff, #ccc);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at 30% 30%, #ddd, #aaa);
       border-radius: 50%;
-      box-shadow: 0 0 20px 6px #ffffff99;
-      z-index: 8;
-      opacity: 0.85;
-      overflow: hidden;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px #fff;
+      cursor: pointer;
+      animation: shake 1s infinite alternate;
     }
 
-    .crack {
+    @keyframes shake {
+      0% { transform: translate(-50%, -50%) rotate(-0.5deg); }
+      100% { transform: translate(-50%, -50%) rotate(0.5deg); }
+    }
+
+    #crack {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      width: 100px;
+      height: 100px;
       pointer-events: none;
-      z-index: 10;
     }
 
-    .crack path {
-      stroke: #444;
-      stroke-width: 0.5;
+    #crack path {
+      stroke: #222;
+      stroke-width: 1.2;
       fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 0.6px #111);
     }
 
     .flag-container {
       position: absolute;
-      top: -35px;
+      top: calc(40% - 50px);
       left: 50%;
       transform: translateX(-50%);
-      opacity: 0;
-      z-index: 12;
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
       align-items: center;
-      pointer-events: none;
+      animation: raise 1.5s ease-out forwards;
     }
 
     .flag-pole {
-      width: 2px;
-      height: 35px;
-      background: linear-gradient(#aaa, #ccc);
+      width: 2.5px;
+      height: 42px;
+      background: linear-gradient(#aaa, #eee);
     }
 
     .flag {
-      width: 24px;
-      height: 16px;
+      width: 36px;
+      height: 22px;
       background: #b51010;
       clip-path: polygon(0 0, 100% 50%, 0 100%);
       position: relative;
       animation: wave 1.5s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .flag::after {
-      content: 'பூங்குயில் குரூப்ஸ்';
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      font-size: 4.5px;
+    .flag span {
+      font-size: 5px;
       font-weight: bold;
       color: #fff6a9;
-      white-space: nowrap;
+      text-align: center;
+      line-height: 1.1;
+      padding-left: 3px;
       text-shadow: 0 0 1px black;
     }
 
     @keyframes wave {
-      0% { transform: rotateZ(0deg) skewY(0deg); }
-      50% { transform: rotateZ(-2deg) skewY(2deg); }
-      100% { transform: rotateZ(0deg) skewY(0deg); }
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
     }
 
-    @keyframes raiseFlag {
-      0%   { transform: translateX(-50%) translateY(10px); opacity: 0; }
-      100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    @keyframes raise {
+      from { opacity: 0; transform: translate(-50%, 20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
     }
 
-    @keyframes lowerFlag {
-      0%   { transform: translateX(-50%) translateY(0); opacity: 1; }
-      100% { transform: translateX(-50%) translateY(10px); opacity: 0; }
-    }
-
-    @keyframes moonShake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-3px); }
-      50% { transform: translateX(3px); }
-      75% { transform: translateX(-2px); }
-      100% { transform: translateX(0); }
-    }
-
-    .message {
-      position: absolute;
-      top: 42%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1em;
-      font-weight: 500;
-      text-align: center;
-      z-index: 10;
-      padding: 0 15px;
-      animation: fadein 2s ease-in;
-      line-height: 1.6;
-    }
-
-    .message .text {
-      background: linear-gradient(90deg, #fefcea, #f1da36);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-
-    .message .emoji {
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    @keyframes fadein {
-      0% { opacity: 0; transform: translate(-50%, -40%) }
-      100% { opacity: 1; transform: translate(-50%, -50%) }
-    }
-
-    .star {
-      position: absolute;
-      font-size: 6px;
-      color: white;
-      opacity: 0.7;
-      z-index: 2;
-      animation: fall-star linear forwards, glitter 1.5s ease-in-out infinite alternate;
-      filter: drop-shadow(0 0 3px white);
-      pointer-events: none;
-    }
-
-    @keyframes fall-star {
-      0% { top: -5vh; opacity: 0.9; }
-      100% { top: 110vh; opacity: 0; }
-    }
-
-    @keyframes glitter {
-      0% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.7; }
-    }
-
-    .comet {
-      position: absolute;
-      top: 13vh;
-      left: -200px;
-      width: 160px;
-      height: 2.5px;
-      background: linear-gradient(
-        to left,
-        white,
-        rgba(255, 200, 0, 0.8),
-        rgba(255, 105, 180, 0.4),
-        rgba(255, 20, 147, 0.2),
-        transparent
-      );
-      filter: blur(1px);
-      border-radius: 50%;
-      box-shadow: 0 0 4px 3px rgba(255, 160, 0, 0.3);
-      animation: flyComet 14s linear forwards;
-      z-index: 9;
-      opacity: 0.9;
-    }
-
-    .comet::before {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: 100%;
-      transform: translateX(-100%);
-      width: 16px;
-      height: 6px;
-      background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0.9),
-        rgba(255, 215, 0, 0.6),
-        rgba(255, 165, 0, 0.4)
-      );
-      border-radius: 50%;
-      filter: blur(1px);
-      box-shadow:
-        0 0 6px 2px rgba(255, 248, 220, 0.4),
-        0 0 12px 4px rgba(255, 215, 0, 0.3);
-      opacity: 0.95;
-    }
-
-    @keyframes flyComet {
-      0% { left: -200px; opacity: 0; }
-      10% { opacity: 1; }
-      50% { left: 50vw; }
-      100% { left: 110vw; opacity: 0; }
-    }
-
-    @media (max-width: 480px) {
-      .message { font-size: 1em; }
-      .moon { width: 12vw; height: 12vw; }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <audio id="bg-music" autoplay loop muted playsinline>
-    <source src="hb.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    window.addEventListener('click', function () {
-      const audio = document.getElementById('bg-music');
-      if (audio) {
-        audio.muted = false;
-        audio.play().catch(err => console.warn("Playback blocked:", err));
-      }
-    }, { once: true });
-  </script>
-
-  <div class="moon" id="moon">
-    <svg id="crack" class="crack" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M50 0 C52 6, 48 10, 50 16" />
-      <path d="M48 8 C42 14, 41 18, 42 24" />
-      <path d="M52 8 C58 14, 59 20, 58 26" />
-      <path d="M50 16 C46 22, 47 30, 49 36" />
-      <path d="M50 16 C54 22, 53 30, 51 36" />
+  <div class="moon" onclick="toggleFlag()">
+    <svg id="crack" viewBox="0 0 100 100">
+      <path d="M50 0 C53 8, 45 14, 52 20" />
+      <path d="M52 20 C48 28, 56 32, 50 38" />
+      <path d="M50 38 C44 44, 58 48, 50 56" />
+      <path d="M50 56 C47 64, 53 70, 48 76" />
+      <path d="M48 76 C55 82, 45 90, 50 100" />
     </svg>
+  </div>
 
-    <div class="flag-container" id="flag">
-      <div class="flag-pole"></div>
-      <div class="flag"></div>
+  <div class="flag-container hidden" id="flag">
+    <div class="flag-pole"></div>
+    <div class="flag">
+      <span>பூங்குயில்<br>குரூப்ஸ்</span>
     </div>
   </div>
 
-  <div class="message">
-    <div class="text">
-      ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
-      A soul as radiant as the cosmos,<br>
-      a spark that dances above the waves,<br>
-      lighting hearts like stars in the night sky.<br>
-      May your name echo where stars meet the sea.
-    </div>
-    <div class="emoji">🌟🌊</div>
-  </div>
-
   <script>
-    function createStarRain() {
-      const item = document.createElement('div');
-      const emojis = ['✦','🎁','🎂','🎉','🎈','🍬'];
-      item.className = 'star';
-      item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      item.style.left = Math.random() * 100 + 'vw';
-      item.style.fontSize = (4 + Math.random() * 4) + 'px';
-      const duration = (2 + Math.random() * 3);
-      item.style.animationDuration = `${duration}s, 1.5s`;
-      document.body.appendChild(item);
-      setTimeout(() => item.remove(), duration * 1000);
+    let flagVisible = false;
+    function toggleFlag() {
+      const flag = document.getElementById('flag');
+      flagVisible = !flagVisible;
+      flag.classList.toggle('hidden', !flagVisible);
     }
-    setInterval(createStarRain, 100);
-  </script>
-
-  <script>
-    function createComet() {
-      const comet = document.createElement('div');
-      comet.className = 'comet';
-      document.body.appendChild(comet);
-      setTimeout(() => comet.remove(), 14000);
-    }
-    setInterval(createComet, 16000);
-    createComet();
-  </script>
-
-  <script>
-    const moon = document.getElementById('moon');
-    const flag = document.getElementById('flag');
-    const crack = document.getElementById('crack');
-    let isRaised = false;
-
-    moon.addEventListener('click', () => {
-      moon.style.animation = 'moonShake 0.5s ease-in-out';
-
-      if (!isRaised) {
-        flag.style.animation = 'raiseFlag 1.5s ease-out forwards';
-        flag.style.opacity = '1';
-        crack.style.opacity = '1';
-      } else {
-        flag.style.animation = 'lowerFlag 1.2s ease-in forwards';
-        crack.style.opacity = '0';
-      }
-
-      setTimeout(() => {
-        moon.style.animation = '';
-      }, 500);
-
-      isRaised = !isRaised;
-    });
   </script>
 
 </body>
