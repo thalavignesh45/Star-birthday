@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -26,48 +26,6 @@
       box-shadow: 0 0 20px 6px #ffffff99;
       z-index: 8;
       opacity: 0.85;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .flag {
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ff66aa;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 6px 6px 0 0;
-      font-size: 0.8em;
-      font-weight: bold;
-      white-space: nowrap;
-      animation: wave 2s ease-in-out infinite;
-      transform-origin: bottom center;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: opacity 0.4s ease;
-    }
-    @keyframes wave {
-      0% { transform: translateX(-50%) rotate(0deg); }
-      25% { transform: translateX(-50%) rotate(2deg); }
-      50% { transform: translateX(-50%) rotate(-2deg); }
-      75% { transform: translateX(-50%) rotate(1.5deg); }
-      100% { transform: translateX(-50%) rotate(0deg); }
-    }
-    .moon.show-flag .flag {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-2px); }
-      50% { transform: translateX(2px); }
-      75% { transform: translateX(-1px); }
-    }
-    .moon.shake {
-      animation: shake 0.6s ease-in-out;
     }
     .message {
       position: absolute;
@@ -174,13 +132,17 @@
     <source src="hb.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
-
-  <!-- 🌕 Moon with flag -->
-  <div class="moon" id="moon">
-    <div class="flag" id="flag">🌸 பூங்குயில் குரூப்ஸ்</div>
-  </div>
-
-  <!-- ✨ Message -->
+  <script>
+    // 🎵 Unmute on first user interaction (for mobile)
+    window.addEventListener('click', function () {
+      const audio = document.getElementById('bg-music');
+      if (audio) {
+        audio.muted = false;
+        audio.play().catch(err => console.warn("Playback blocked:", err));
+      }
+    }, { once: true });
+  </script>
+  <div class="moon"></div>
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -191,24 +153,18 @@
     </div>
     <div class="emoji">🌟🌊</div>
   </div>
-
-  <!-- ⭐ JavaScript -->
   <script>
-    // 🎵 Unmute on first user interaction
-    window.addEventListener('click', function () {
-      const audio = document.getElementById('bg-music');
-      if (audio) {
-        audio.muted = false;
-        audio.play().catch(err => console.warn("Playback blocked:", err));
-      }
-    }, { once: true });
-
-    // 🌟 Falling stars
+    // ✦ More star rain, rare extras
     function createStarRain() {
       const item = document.createElement('div');
-      const emojis = ['✦','✦','✦','✦','✦','✦','✦','🎁','🎂','🎉','🎈','🍬'];
+      // ✦ Dominates; others are rare sparkle
+      const emojis = [
+        '✦','✦','✦','✦','✦','✦','✦',
+        '🎁','🎂','🎉','🎈','🍬'
+      ];
+      const emoji = emojis[Math.floor(Math.random() * emojis.length)];
       item.className = 'star';
-      item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      item.innerText = emoji;
       item.style.left = Math.random() * 100 + 'vw';
       item.style.fontSize = (4 + Math.random() * 4) + 'px';
       const duration = (2 + Math.random() * 3);
@@ -217,8 +173,9 @@
       setTimeout(() => item.remove(), duration * 1000);
     }
     setInterval(createStarRain, 100);
-
-    // ☄️ Comet
+  </script>
+  <script>
+    // ☄️ Comet stays as is
     function createComet() {
       const comet = document.createElement('div');
       comet.className = 'comet';
@@ -227,14 +184,6 @@
     }
     setInterval(createComet, 16000);
     createComet();
-
-    // 🌕 Moon shake and flag toggle
-    const moon = document.getElementById('moon');
-    moon.addEventListener('click', () => {
-      moon.classList.add('shake');
-      moon.classList.toggle('show-flag');
-      setTimeout(() => moon.classList.remove('shake'), 600);
-    });
   </script>
 </body>
 </html>
