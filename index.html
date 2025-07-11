@@ -54,57 +54,57 @@
 
     .flag-container {
       position: absolute;
-      top: -26px;
+      top: -35px;
       left: 50%;
       transform: translateX(-50%);
       opacity: 0;
-      z-index: 11;
-      pointer-events: none;
+      z-index: 12;
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
+      pointer-events: none;
     }
 
     .flag-pole {
       width: 2px;
-      height: 26px;
-      background: linear-gradient(#999, #ccc);
+      height: 35px;
+      background: linear-gradient(#aaa, #ccc);
     }
 
     .flag {
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 22px solid #b51010;
+      width: 24px;
+      height: 16px;
+      background: #b51010;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
       position: relative;
-      animation: flap 1.2s ease-in-out infinite alternate;
+      animation: wave 1.5s ease-in-out infinite;
     }
 
     .flag::after {
       content: 'பூங்குயில் குரூப்ஸ்';
       position: absolute;
-      top: -8px;
-      left: 3px;
-      font-size: 4.2px;
+      left: 2px;
+      top: 2px;
+      font-size: 4.5px;
+      font-weight: bold;
       color: #fff6a9;
       white-space: nowrap;
-      font-weight: bold;
       text-shadow: 0 0 1px black;
     }
 
-    @keyframes flap {
-      0% { transform: skewY(0deg); }
-      100% { transform: skewY(3deg); }
+    @keyframes wave {
+      0% { transform: rotateZ(0deg) skewY(0deg); }
+      50% { transform: rotateZ(-2deg) skewY(2deg); }
+      100% { transform: rotateZ(0deg) skewY(0deg); }
     }
 
     @keyframes raiseFlag {
       0%   { transform: translateX(-50%) translateY(10px); opacity: 0; }
-      100% { transform: translateX(-50%) translateY(-26px); opacity: 1; }
+      100% { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
 
     @keyframes lowerFlag {
-      0%   { transform: translateX(-50%) translateY(-26px); opacity: 1; }
+      0%   { transform: translateX(-50%) translateY(0); opacity: 1; }
       100% { transform: translateX(-50%) translateY(10px); opacity: 0; }
     }
 
