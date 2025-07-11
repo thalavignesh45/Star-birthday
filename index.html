@@ -1,103 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="ta">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star of the Sea</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{height:100vh;background:url('ocean-3.jpg') center/cover no-repeat;position:relative;overflow:hidden;color:white;font-family:'Segoe UI',sans-serif;}
-    .moon{position:absolute;top:4vh;left:6vw;width:8vw;height:8vw;border-radius:50%;background:radial-gradient(circle,#fff,#ccc);box-shadow:0 0 20px 6px #ffffff99;opacity:0.85;z-index:8;
-      display:flex;align-items:center;justify-content:center;
-      transition:transform .2s;}
-    .shake{animation:shake .3s ease-in-out;}
-    @keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-2px,2px)}50%{transform:translate(2px,-2px)}75%{transform:translate(-2px,-2px)}100%{transform:translate(0,0)}}
-    #crack{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .3s;}
-    #crack path{stroke:#444;stroke-width:1.2;fill:none;}
-    .flag-container{position:absolute;top:4vh;left:6vw;transform:translate(-50%,50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;transition:opacity .4s,transform .4s;z-index:9;}
-    .flag-pole{width:2px;height:40px;background:linear-gradient(#aaa,#eee);}
-    .flag{width:36px;height:22px;background:#b51010;clip-path:polygon(0 0,100% 50%,0 100%);display:flex;align-items:center;justify-content:center;animation:wave 1.2s ease-in-out infinite;}
-    .flag span{font-size:5px;font-weight:bold;color:#fff6a9;line-height:1.1;text-align:center;padding-left:2px;text-shadow:0 0 1px black;}
-    @keyframes wave{0%{transform:rotate(0deg)}50%{transform:rotate(2deg)}100%{transform:rotate(0deg)}}
-    .message{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);font-size:1em;font-weight:500;text-align:center;z-index:10;padding:0 15px;animation:fadein 2s ease-in;line-height:1.6;}
-    .message .text{background:linear-gradient(90deg,#fefcea,#f1da36);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .message .emoji{margin-top:10px;}
-    .star{position:absolute;font-size:6px;color:white;opacity:0.7;z-index:2;animation:fall-star linear forwards,glitter 1.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 3px white);pointer-events:none;}
-    @keyframes fall-star{0%{top:-5vh;opacity:0.9}100%{top:110vh;opacity:0}}
-    @keyframes glitter{0%{transform:scale(1);opacity:0.6}50%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:0.7}}
-    .comet{position:absolute;top:13vh;left:-200px;width:160px;height:2.5px;background:linear-gradient(to left,white,rgba(255,200,0,0.8),rgba(255,105,180,0.4),rgba(255,20,147,0.2),transparent);filter:blur(1px);border-radius:50%;box-shadow:0 0 4px 3px rgba(255,160,0,0.3);animation:flyComet 14s linear forwards;opacity:0.9;z-index:9;}
-    .comet::before{content:'';position:absolute;top:-3px;left:100%;transform:translateX(-100%);width:16px;height:6px;background:linear-gradient(90deg,rgba(255,255,255,0.9),rgba(255,215,0,0.6),rgba(255,165,0,0.4));border-radius:50%;filter:blur(1px);box-shadow:0 0 6px 2px rgba(255,248,220,0.4),0 0 12px 4px rgba(255,215,0,0.3);opacity:0.95;}
-    @keyframes flyComet{0%{left:-200px;opacity:0}10%{opacity:1}50%{left:50vw}100%{left:110vw;opacity:0}}
-    @keyframes fadein{0%{opacity:0;transform:translate(-50%,-40%)}100%{opacity:1;transform:translate(-50%,-50%)}}
-    @media(max-width:480px){.moon{width:12vw;height:12vw;} .message{font-size:1em}}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      background: url('ocean-3.jpg') no-repeat center center;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+    .moon {
+      position: absolute;
+      top: 4vh;
+      left: 6vw;
+      width: 8vw;
+      height: 8vw;
+      background: radial-gradient(circle at center, #fff, #ccc);
+      border-radius: 50%;
+      box-shadow: 0 0 20px 6px #ffffff99;
+      z-index: 8;
+      opacity: 0.85;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    .moon.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+    @keyframes shake {
+      0% { transform: translate(0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    .flag-container {
+      position: absolute;
+      bottom: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      pointer-events: none;
+    }
+    .moon.show-flag .flag-container {
+      transform: translateY(-40px);
+      opacity: 1;
+    }
+    .flag-pole {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(#aaa, #fff);
+    }
+    .flag {
+      width: 40px;
+      height: 24px;
+      background: #c00;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+    .flag span {
+      font-size: 5.5px;
+      font-weight: bold;
+      color: #fff4a3;
+      text-align: center;
+      line-height: 1.1;
+    }
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .crack {
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      z-index: 9;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .moon.show-flag .crack {
+      opacity: 1;
+    }
+    .message {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1em;
+      font-weight: 500;
+      text-align: center;
+      z-index: 10;
+      padding: 0 15px;
+      animation: fadein 2s ease-in;
+      line-height: 1.6;
+    }
+    .message .text {
+      background: linear-gradient(90deg, #fefcea, #f1da36);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .message .emoji {
+      display: inline-block;
+      margin-top: 10px;
+    }
+    @keyframes fadein {
+      0% { opacity: 0; transform: translate(-50%, -40%) }
+      100% { opacity: 1; transform: translate(-50%, -50%) }
+    }
   </style>
 </head>
 <body>
-  <!-- Audio -->
-  <audio id="bg-music" autoplay loop muted playsinline>
-    <source src="hb.mp3" type="audio/mpeg"/>
-  </audio>
-  <script>window.addEventListener('click',()=>{let a=document.getElementById('bg-music');if(a){a.muted=false;a.play().catch(e=>{})}}, {once:true});</script>
-
   <div class="moon" id="moon">
-    <svg id="crack" viewBox="0 0 100 100">
-      <path d="M50 0 C53 8,45 14,52 20"/>
-      <path d="M52 20 C48 28,56 32,50 38"/>
-      <path d="M50 38 C44 44,58 48,50 56"/>
-      <path d="M50 56 C47 64,53 70,48 76"/>
-      <path d="M48 76 C55 82,45 90,50 100"/>
+    <svg class="crack" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M50,0 C45,20 55,40 50,60 C47,70 52,80 50,100" stroke="#444" stroke-width="1" fill="none" />
     </svg>
+    <div class="flag-container">
+      <div class="flag-pole"></div>
+      <div class="flag"><span>பூங்குயில்<br>குரூப்ஸ்</span></div>
+    </div>
   </div>
-
-  <div class="flag-container" id="flag">
-    <div class="flag-pole"></div>
-    <div class="flag"><span>பூங்குயில்<br>குரூப்ஸ்</span></div>
-  </div>
-
   <div class="message">
-    <div class="text">✨ Happy Birthday to the <strong>Star of the Sea</strong><br>A soul as radiant as the cosmos,<br>a spark that dances above the waves,<br>lighting hearts like stars in the night sky.<br>May your name echo where stars meet the sea.</div>
+    <div class="text">
+      ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
+      A soul as radiant as the cosmos,<br>
+      a spark that dances above the waves,<br>
+      lighting hearts like stars in the night sky.<br>
+      May your name echo where stars meet the sea.
+    </div>
     <div class="emoji">🌟🌊</div>
   </div>
-
   <script>
-    function createStarRain(){
-      const item=document.createElement('div'),em=['✦','✦','✦','✦','✦','✦','🎁','🎂','🎉','🎈','🍬'],e=em[Math.floor(Math.random()*em.length)];
-      Object.assign(item,{className:'star',innerText:e});
-      item.style.left=Math.random()*100+'vw';
-      item.style.fontSize=(4+Math.random()*4)+'px';
-      let d=2+Math.random()*3;item.style.animationDuration=`${d}s,1.5s`;
-      document.body.appendChild(item);
-      setTimeout(()=>item.remove(),d*1000);
-    }
-    setInterval(createStarRain,100);
-  </script>
-
-  <script>
-    function createComet(){const c=document.createElement('div');c.className='comet';document.body.appendChild(c);setTimeout(()=>c.remove(),14000);}
-    setInterval(createComet,16000);createComet();
-  </script>
-
-  <script>
-    let shown=false;
-    document.getElementById('moon').addEventListener('click',()=>{
-      shown=!shown;
-      const m=document.getElementById('moon'),
-            f=document.getElementById('flag'),
-            c=document.getElementById('crack');
-      if(shown){
-        m.classList.add('shake');
-        c.style.opacity=1;
-        f.style.opacity=1;
-        f.style.transform='translate(-50%,-120%)';
-      } else {
-        m.classList.remove('shake');
-        c.style.opacity=0;
-        f.style.opacity=0;
-        f.style.transform='translate(-50%,50%)';
-      }
+    const moon = document.getElementById("moon");
+    moon.addEventListener("click", () => {
+      moon.classList.toggle("shake");
+      moon.classList.toggle("show-flag");
+      setTimeout(() => moon.classList.remove("shake"), 500);
     });
-    // init
-    document.getElementById('flag').style.transform='translate(-50%,50%)';
   </script>
 </body>
 </html>
