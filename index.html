@@ -71,20 +71,24 @@
       left: 50%;
       transform: translate(-50%, 10px);
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       align-items: center;
       opacity: 0;
       z-index: 11;
       pointer-events: none;
     }
 
+    .flag-pole {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(#aaa, #ccc);
+    }
+
     .flag {
-      width: 20px;
-      height: 8px;
       background: #b51010;
       color: #ffef96;
-      font-size: 1.5px;
-      font-family: 'Segoe UI', sans-serif;
+      font-size: 2.5px;
+      padding: 1px 4px;
       border-radius: 1px;
       border: 0.5px solid rgba(255, 239, 150, 0.4);
       display: flex;
@@ -93,13 +97,8 @@
       text-shadow: 0 0 0.6px #000;
       white-space: nowrap;
       box-shadow: 0 0 1px rgba(255, 239, 150, 0.3);
-      margin-bottom: 1px;
-    }
-
-    .flag-pole {
-      width: 1px;
-      height: 20px;
-      background: linear-gradient(#999, #ccc);
+      margin-bottom: 2px;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     @keyframes raiseFlag {
@@ -241,8 +240,8 @@
   <div class="moon" id="moon">
     <div class="crack" id="crack"></div>
     <div class="flag-container" id="flag">
-      <div class="flag">பூங்குயில்</div>
       <div class="flag-pole"></div>
+      <div class="flag">பூங்குயில் குரூப்ஸ்</div>
     </div>
   </div>
 
