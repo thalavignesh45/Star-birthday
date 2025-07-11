@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ta">
+<!DOCTYPE html><html lang="ta">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -31,42 +30,44 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.3s ease;
+      flex-direction: column;
     }
     .moon.shake {
       animation: shake 0.4s ease-in-out;
     }
     @keyframes shake {
-      0%   { transform: translate(0); }
-      25%  { transform: translate(-2px, 2px); }
-      50%  { transform: translate(2px, -2px); }
-      75%  { transform: translate(-2px, -2px); }
+      0% { transform: translate(0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
       100% { transform: translate(0); }
     }
     .flag-container {
       position: absolute;
-      top: 0;
+      top: -38px;
       left: 50%;
-      transform: translate(-50%, -100%);
+      transform: translateX(-50%) scale(0.9);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      opacity: 0;
+      pointer-events: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      pointer-events: none;
-      z-index: 9;
+      z-index: 10;
     }
     .moon.show-flag .flag-container {
       opacity: 1;
-      transform: translate(-50%, -120%);
+      transform: translateX(-50%) translateY(-10px) scale(0.9);
+      pointer-events: auto;
     }
     .flag-pole {
-      width: 1.5px;
-      height: 20px;
+      width: 2px;
+      height: 40px;
       background: linear-gradient(#aaa, #fff);
     }
     .flag {
-      width: 36px;
-      height: 20px;
+      width: 60px;
+      height: 36px;
       background: #c00;
       clip-path: polygon(0 0, 100% 50%, 0 100%);
       display: flex;
@@ -75,15 +76,33 @@
       animation: wave 1.5s ease-in-out infinite;
     }
     .flag span {
-      font-size: 6px;
+      font-size: 7px;
       font-weight: bold;
       color: #fff4a3;
       text-align: center;
-      line-height: 1.1;
+      line-height: 1.2;
     }
     @keyframes wave {
-      0%,100%{transform:rotate(0deg);}
-      50%{transform:rotate(2deg);}
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .crack {
+      position: absolute;
+      top: 30%;
+      left: 48%;
+      width: 8%;
+      height: 45%;
+      z-index: 9;
+      pointer-events: none;
+    }
+    .crack path {
+      stroke: #444;
+      stroke-width: 1.2;
+      fill: none;
+      stroke-linecap: round;
+    }
+    .moon:not(.show-flag) .crack {
+      display: none;
     }
     .message {
       position: absolute;
@@ -99,7 +118,7 @@
       line-height: 1.6;
     }
     .message .text {
-      background: linear-gradient(90deg,#fefcea,#f1da36);
+      background: linear-gradient(90deg, #fefcea, #f1da36);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
@@ -109,19 +128,21 @@
       margin-top: 10px;
     }
     @keyframes fadein {
-      0%{opacity:0;transform:translate(-50%,-40%);}
-      100%{opacity:1;transform:translate(-50%,-50%);}
+      0% { opacity: 0; transform: translate(-50%, -40%) }
+      100% { opacity: 1; transform: translate(-50%, -50%) }
     }
   </style>
 </head>
 <body>
   <div class="moon" id="moon">
+    <svg class="crack" viewBox="0 0 100 300">
+      <path d="M50 0 C48 20,52 40,50 60 C47 80,53 100,50 120 C48 140,52 160,50 180 C49 200,51 220,50 240 C47 260,53 280,50 300"/>
+    </svg>
     <div class="flag-container">
       <div class="flag-pole"></div>
       <div class="flag"><span>பூங்குயில்<br>குரூப்ஸ்</span></div>
     </div>
   </div>
-
   <div class="message">
     <div class="text">
       ✨ Happy Birthday to the <strong>Star of the Sea</strong><br>
@@ -132,7 +153,6 @@
     </div>
     <div class="emoji">🌟🌊</div>
   </div>
-
   <script>
     const moon = document.getElementById("moon");
     moon.addEventListener("click", () => {
