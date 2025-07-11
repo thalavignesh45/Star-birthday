@@ -44,13 +44,12 @@
     }
 
     .crack path {
-      stroke: #555;
+      stroke: #444;
       stroke-width: 0.5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
-      stroke-dasharray: 1, 0.8;
-      filter: drop-shadow(0 0 0.5px #222);
+      filter: drop-shadow(0 0 0.6px #111);
     }
 
     .flag-container {
@@ -58,9 +57,6 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%) translateY(10px);
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
       opacity: 0;
       z-index: 11;
       pointer-events: none;
@@ -75,10 +71,11 @@
     .flag {
       width: 0;
       height: 0;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 12px solid #b51010;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 20px solid #b51010;
       position: relative;
+      animation: flap 1.5s ease-in-out infinite alternate;
     }
 
     .flag::after {
@@ -86,10 +83,16 @@
       position: absolute;
       top: -6px;
       left: 2px;
-      font-size: 3px;
+      font-size: 4px;
       color: #fff6a9;
       white-space: nowrap;
-      text-shadow: 0 0 0.5px black;
+      font-weight: bold;
+      text-shadow: 0 0 1px black;
+    }
+
+    @keyframes flap {
+      0% { transform: skewY(0deg); }
+      100% { transform: skewY(2deg); }
     }
 
     @keyframes raiseFlag {
@@ -100,6 +103,14 @@
     @keyframes lowerFlag {
       0%   { transform: translateX(-50%) translateY(-38px); opacity: 1; }
       100% { transform: translateX(-50%) translateY(10px); opacity: 0; }
+    }
+
+    @keyframes moonShake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
     }
 
     .message {
@@ -230,7 +241,10 @@
 
   <div class="moon" id="moon">
     <svg id="crack" class="crack" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M52 0 C54 10, 48 20, 50 30 C52 38, 47 46, 50 54 C53 62, 48 70, 50 78 C52 86, 49 94, 50 100" />
+      <!-- Top-quarter only vein-style cracks -->
+      <path d="M50 0 C52 6, 48 10, 50 14" />
+      <path d="M49 8 C44 12, 43 16, 44 20" />
+      <path d="M51 8 C56 12, 57 16, 56 20" />
     </svg>
 
     <div class="flag-container" id="flag">
