@@ -27,9 +27,10 @@
       opacity: 0.85;
       cursor: pointer;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       transition: transform 0.3s ease;
+      flex-direction: column;
     }
     .moon.shake {
       animation: shake 0.4s ease-in-out;
@@ -42,19 +43,19 @@
       100% { transform: translate(0); }
     }
     .flag-container {
-      position: absolute;
-      bottom: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transform: translateY(40px);
+      margin-bottom: 0.5vh;
+      transform: translateY(-10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
       opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
       pointer-events: none;
     }
     .moon.show-flag .flag-container {
-      transform: translateY(-40px);
       opacity: 1;
+      transform: translateY(-40px);
+      pointer-events: auto;
     }
     .flag-pole {
       width: 2px;
@@ -62,8 +63,8 @@
       background: linear-gradient(#aaa, #fff);
     }
     .flag {
-      width: 40px;
-      height: 24px;
+      width: 60px;
+      height: 36px;
       background: #c00;
       clip-path: polygon(0 0, 100% 50%, 0 100%);
       display: flex;
@@ -72,26 +73,15 @@
       animation: wave 1.5s ease-in-out infinite;
     }
     .flag span {
-      font-size: 5.5px;
+      font-size: 7px;
       font-weight: bold;
       color: #fff4a3;
       text-align: center;
-      line-height: 1.1;
+      line-height: 1.2;
     }
     @keyframes wave {
       0%, 100% { transform: rotate(0deg); }
       50% { transform: rotate(2deg); }
-    }
-    .crack {
-      position: absolute;
-      width: 70%;
-      height: 70%;
-      z-index: 9;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .moon.show-flag .crack {
-      opacity: 1;
     }
     .message {
       position: absolute;
@@ -124,9 +114,6 @@
 </head>
 <body>
   <div class="moon" id="moon">
-    <svg class="crack" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M50,0 C45,20 55,40 50,60 C47,70 52,80 50,100" stroke="#444" stroke-width="1" fill="none" />
-    </svg>
     <div class="flag-container">
       <div class="flag-pole"></div>
       <div class="flag"><span>பூங்குயில்<br>குரூப்ஸ்</span></div>
